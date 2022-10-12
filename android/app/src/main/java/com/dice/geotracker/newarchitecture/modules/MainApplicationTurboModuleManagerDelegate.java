@@ -1,4 +1,4 @@
-package com.hiking.newarchitecture.modules;
+package com.dice.geotracker.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

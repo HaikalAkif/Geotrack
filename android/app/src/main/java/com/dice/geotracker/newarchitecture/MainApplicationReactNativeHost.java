@@ -1,4 +1,4 @@
-package com.hiking.newarchitecture;
+package com.dice.geotracker.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -20,9 +20,9 @@ import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.hiking.BuildConfig;
-import com.hiking.newarchitecture.components.MainComponentsRegistry;
-import com.hiking.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.dice.geotracker.BuildConfig;
+import com.dice.geotracker.newarchitecture.components.MainComponentsRegistry;
+import com.dice.geotracker.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

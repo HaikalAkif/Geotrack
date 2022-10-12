@@ -1,4 +1,4 @@
-package com.hiking;
+package com.dice.geotracker;
 
 import android.os.Build;
 import android.os.Bundle;
