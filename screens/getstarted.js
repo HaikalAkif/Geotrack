@@ -19,6 +19,8 @@ const GetStarted = ({ navigation }) => {
                 {/* <SvgHiking /> */}
                 <Lottie
                     source={require('../assets/lottie/65726-traveler.json')}
+                    autoPlay
+                    loop
                     style={{
                         // width: SCREEN_WIDTH / 1.5,
                         height: SCREEN_HEIGHT / 3,
