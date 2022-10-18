@@ -47,14 +47,21 @@ export default function App() {
                         headerShown: false,
                     }}
                 >
-                    <Stack.Screen name="getstarted" component={GetStarted} />
-                    <Stack.Screen name="load" component={Load} />
-                    <Stack.Screen name="signin" component={Signin} />
-                    <Stack.Screen name="home" component={Home} />
-                    <Stack.Screen name="mainhome" component={MainHome} />
-                    <Stack.Screen name="profile" component={Profile} />
-                    <Stack.Screen name="map" component={Map} />
-                    <Stack.Screen name="feature" component={Feature} />
+                    {user ? (
+                        <>
+                            <Stack.Screen name="home" component={Home} />
+                            <Stack.Screen name="mainhome" component={MainHome} />
+                            <Stack.Screen name="profile" component={Profile} />
+                            <Stack.Screen name="map" component={Map} />
+                            <Stack.Screen name="feature" component={Feature} />
+                        </>
+                    ) : (
+                        <>
+                            <Stack.Screen name="getstarted" component={GetStarted} />
+                            <Stack.Screen name="load" component={Load} />
+                            <Stack.Screen name="signin" component={Signin} />
+                        </>
+                    )}
                 </Stack.Navigator>
             </SafeAreaProvider>
         </NavigationContainer>

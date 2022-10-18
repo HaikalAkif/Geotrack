@@ -9,11 +9,28 @@ import {
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+
+GoogleSignin.configure({
+    webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
+});
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Load = ({ navigation }) => {
+
+    async function onGoogleSignIn() {
+
+        const { idToken } = await GoogleSignin.signIn();
+
+        const googleCredentials = auth.GoogleAuthProvider.credential(idToken);
+
+        return auth().signInWithCredential(googleCredentials);
+
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -45,8 +62,10 @@ const Load = ({ navigation }) => {
                 </Text> */}
             </View>
             <View style={{ paddingVertical: 20 }}>
-                <Pressable style={styles.google}>
-                    <Text style={styles.googleBut}>Sign In with Google</Text>
+                <Pressable style={styles.google} onPress={onGoogleSignIn}>
+                    <Text style={styles.googleBut}>
+                        Sign In with Google
+                    </Text>
                 </Pressable>
                 <Pressable style={styles.fb}>
                     <Text style={styles.fbBut}>Sign In with Facebook</Text>
