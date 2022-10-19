@@ -1,40 +1,25 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import GetStarted from "./screens/getstarted";
+import GetStarted from "./screens/OnboardingScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import auth from '@react-native-firebase/auth'
+import { createNativeStackNavigator } from "@react-navigation/native-stack";``
 
-import Load from "./screens/load";
-import Signin from "./screens/signin";
-import Home from "./screens/home";
-import Profile from "./screens/profile";
-import Map from "./screens/map";
-import Feature from "./screens/feature";
-import MainHome from "./screens/mainhome";
+import Load from "./screens/SignupScreen";
+import Signin from "./screens/SignInScreen";
+import Home from "./screens/HomeScreen";
+import Profile from "./screens/ProfileScreen";
+import Map from "./screens/MapScreen";
+import Feature from "./screens/FeatureScreen";
+import MainHome from "./screens/MainScreen";
 
 import useCachedResources from "./hooks/useCachedResources";
-import { useEffect, useState } from "react";
+import useFirebaseAuth from "./hooks/useFirebaseAuth";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-    const [ initializing, setInitializing ] = useState(true)
-    const [ user, setUser ] = useState()
-
+    const { initializing, user } = useFirebaseAuth()
     const isLoaded = useCachedResources()
-
-    useEffect(() => {
-
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber;
-
-    }, [])
-
-    function onAuthStateChanged(user) {
-        setUser(user);
-        if (initializing) setInitializing(false);
-    }
 
     if (!isLoaded || initializing) return null;
 

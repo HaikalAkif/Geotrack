@@ -16,9 +16,6 @@ GoogleSignin.configure({
     webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
 });
 
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
-
 const Load = ({ navigation }) => {
 
     async function onGoogleSignIn() {

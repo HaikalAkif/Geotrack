@@ -1,11 +1,11 @@
 import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, TouchableHighlight } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 GoogleSignin.configure({
-  webClientId: '715503571183-p4es6toc237suce8nq7id7pkb8htajll.apps.googleusercontent.com',
+    webClientId: '715503571183-p4es6toc237suce8nq7id7pkb8htajll.apps.googleusercontent.com',
 });
 
 const Signin = ({ navigation }) => {
@@ -53,7 +53,7 @@ const Signin = ({ navigation }) => {
                 <Pressable style={styles.signin} onPress={() => navigation.navigate('mainhome')}>
                     <Text style={styles.signinBut}>Sign In</Text>
                 </Pressable>
-                <Pressable style={styles.signin} onPress={() => onGoogleButtonPress().then(() => navigation.navigate('mainhome')).catch((err) => console.log(err))}>
+                <Pressable style={styles.signin} onPress={() => onGoogleButtonPress().catch((err) => console.log(err))}>
                     <Text style={styles.signinBut}>Sign in using Google</Text>
                 </Pressable>
                 <Text style={styles.forgot}>
