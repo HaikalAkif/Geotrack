@@ -9,7 +9,7 @@ import Home from "./screens/HomeScreen";
 import Profile from "./screens/ProfileScreen";
 import Map from "./screens/MapScreen";
 import Feature from "./screens/FeatureScreen";
-import MainHome from "./screens/MainScreen";
+import MainScreen from "./screens/MainScreen";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useFirebaseAuth from "./hooks/useFirebaseAuth";
@@ -27,7 +27,7 @@ export default function App() {
         <NavigationContainer>
             <SafeAreaProvider>
                 <Stack.Navigator
-                    initialRouteName={!user ? "getstarted" : 'home'}
+                    initialRouteName={!user ? "getstarted" : "main"}
                     screenOptions={{
                         headerShown: false,
                     }}
@@ -35,7 +35,7 @@ export default function App() {
                     {user ? (
                         <>
                             <Stack.Screen name="home" component={Home} />
-                            <Stack.Screen name="mainhome" component={MainHome} />
+                            <Stack.Screen name="main" component={MainScreen} />
                             <Stack.Screen name="profile" component={Profile} />
                             <Stack.Screen name="map" component={Map} />
                             <Stack.Screen name="feature" component={Feature} />

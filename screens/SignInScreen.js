@@ -1,11 +1,13 @@
-import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, TextInput, Pressable, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 GoogleSignin.configure({
-    webClientId: '715503571183-p4es6toc237suce8nq7id7pkb8htajll.apps.googleusercontent.com',
+    scopes: ['email', 'profile'],
+    webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
+    offlineAccess: true,
 });
 
 const Signin = ({ navigation }) => {
