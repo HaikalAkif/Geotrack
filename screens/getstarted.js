@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Dimensions, Image, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Video from "react-native-video";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -9,9 +10,13 @@ const GetStarted = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
         <StatusBar style="dark" backgroundColor="#000" />
-        <Image
-          style={styles.background}
-          source={require("../Background/BG1.png")}
+        <Video source={require("../Background/FogMount.mp4")}
+          style={styles.backgroundVideo}
+          muted
+          repeat
+          resizeMode={"cover"}
+          rate={1.0}
+          ignoreSilentSwitch={"obey"}
         />
         <Text style={styles.name}>
           GEOTRACKER
@@ -40,21 +45,30 @@ const styles = StyleSheet.create({
       height: windowHeight,
       width: windowWidth,
     },
+    backgroundVideo: {
+      // height: height,
+      position: "absolute",
+      top: 0,
+      left: 0,
+      alignItems: "stretch",
+      bottom: 0,
+      right: 0,
+    },
     name: {
       fontSize: 40,
       position: "absolute",
-      color: '#eee',
-      backgroundColor: '#e5aab2',
+      fontWeight: 'bold',
+      color: '#000',
+      left: 20,
       top: 400,
     },
     desc: {
       position: 'absolute',
       fontSize: 16,
-      color: '#eee',
+      color: '#000',
+      left: 25,
       top: 450,
       marginTop: 10,
-      textAlign: 'center',
-      backgroundColor: '#f12b32',
     },
     Pressable: {
       position: "absolute",
