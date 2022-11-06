@@ -8,8 +8,9 @@ const windowHeight = Dimensions.get("window").height;
 const Home = ({}) => {
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar style="dark" backgroundColor="#000" />
             <SafeAreaView style={styles.container1}>
-                <Text style={styles.title}>Testing</Text>
+                <Text style={styles.title}>Testing testing</Text>
             </SafeAreaView>
         </SafeAreaView>
     )
