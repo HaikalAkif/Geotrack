@@ -5,9 +5,7 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 GoogleSignin.configure({
-    scopes: ['email', 'profile'],
     webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
-    offlineAccess: true,
 });
 
 const Signin = ({ navigation }) => {
@@ -52,7 +50,7 @@ const Signin = ({ navigation }) => {
                     style={styles.input}
                     placeholder="Password"
                 />
-                <Pressable style={styles.signin} onPress={() => navigation.navigate('mainhome')}>
+                <Pressable style={styles.signin} onPress={() => navigation.navigate('home')}>
                     <Text style={styles.signinBut}>Sign In</Text>
                 </Pressable>
                 <Pressable style={styles.signin} onPress={() => onGoogleButtonPress().catch((err) => console.log(err))}>
