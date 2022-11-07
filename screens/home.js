@@ -10,7 +10,7 @@ const Home = ({}) => {
         <SafeAreaView style={styles.container}>
             <StatusBar style="dark" backgroundColor="#000" />
             <SafeAreaView style={styles.container1}>
-                <Text style={styles.title}>Testing testing</Text>
+                <Text style={styles.title}>Testing</Text>
             </SafeAreaView>
         </SafeAreaView>
     )
