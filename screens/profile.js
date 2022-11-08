@@ -9,7 +9,7 @@ const Profile = ({}) => {
     return(
         <SafeAreaView style={styles.container}>
             <Text>
-                Hello
+                Sini buat profile page
             </Text>
         </SafeAreaView>
     )
