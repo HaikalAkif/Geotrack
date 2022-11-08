@@ -23,7 +23,7 @@ const GetStarted = ({ navigation }) => {
         </Text>
         <Text style={styles.desc}>
           The best view comes{"\n"}
-          after the hardest climbs
+          after the hardest climb
         </Text>
         <Pressable style={styles.Pressable} onPress={() => navigation.navigate('load')}>
           <Text style={styles.button}>Get Started</Text>
