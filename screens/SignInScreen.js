@@ -1,11 +1,26 @@
-import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, TextInput, Pressable, Image } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
+GoogleSignin.configure({
+    webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
+});
 
 const Signin = ({ navigation }) => {
+    
+    async function onGoogleButtonPress() {
+        // Get the users ID token
+        const { idToken } = await GoogleSignin.signIn();
+      
+        // Create a Google credential with the token
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      
+        // Sign-in the user with the credential
+        return auth().signInWithCredential(googleCredential);
+      }
+
     return (  
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={styles.container1}>
@@ -20,10 +35,10 @@ const Signin = ({ navigation }) => {
                     source={require("../assets/mount.png")}
                 />
                 <Text style={styles.desc}>
-                Welcome Back.
+                    Welcome Back.
                 </Text>
                 <Text style={styles.desc}>
-                Log in and start exploring
+                    Log in and start exploring
                 </Text>
             </SafeAreaView>
             <SafeAreaView style={styles.container2}>
@@ -37,6 +52,9 @@ const Signin = ({ navigation }) => {
                 />
                 <Pressable style={styles.signin} onPress={() => navigation.navigate('home')}>
                     <Text style={styles.signinBut}>Sign In</Text>
+                </Pressable>
+                <Pressable style={styles.signin} onPress={() => onGoogleButtonPress().catch((err) => console.log(err))}>
+                    <Text style={styles.signinBut}>Sign in using Google</Text>
                 </Pressable>
                 <Text style={styles.forgot}>
                     Forgot your password?
@@ -52,9 +70,7 @@ export default Signin
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        color: '#eee',
-        height: windowHeight,
-        width: windowWidth,
+        color: '#eee'
     },
     container1: {
         paddingBottom: 50,

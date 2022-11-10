@@ -1,34 +1,54 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import GetStarted from "./screens/getstarted";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Load from "./screens/load";
-import Signin from "./screens/signin";
-import Home from "./screens/home";
-import Profile from "./screens/profile";
-import Map from "./screens/map";
-import Feature from "./screens/feature";
+import GetStarted from "./screens/OnboardingScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";``
+
+import Load from "./screens/SignupScreen";
+import Signin from "./screens/SignInScreen";
+import Home from "./screens/Fragments/HomeScreen";
+import Profile from "./screens/Fragments/ProfileScreen";
+import Map from "./screens/MapScreen";
+import Feature from "./screens/FeatureScreen";
+import MainScreen from "./screens/MainScreen";
+
+import useCachedResources from "./hooks/useCachedResources";
+import useFirebaseAuth from "./hooks/useFirebaseAuth";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <SafeAreaProvider>
-      <Stack.Navigator initialRouteName="getstarted" screenOptions={{
-        headerShown: false
-      }}>
-        <Stack.Screen name="getstarted" component={GetStarted}/>
-        <Stack.Screen name="load" component={Load}/>
-        <Stack.Screen name="signin" component={Signin}/>
-        <Stack.Screen name="home" component={Home}/>
-        <Stack.Screen name="profile" component={Profile}/>
-        <Stack.Screen name="map" component={Map}/>
-        <Stack.Screen name="feature" component={Feature}/>
-      </Stack.Navigator>
-      </SafeAreaProvider>
-    </NavigationContainer>
-  );
+
+    const { initializing, user } = useFirebaseAuth()
+    const isLoaded = useCachedResources()
+
+    if (!isLoaded || initializing) return null;
+
+    return (
+        <NavigationContainer>
+            <SafeAreaProvider>
+                <Stack.Navigator
+                    initialRouteName={!user ? "getstarted" : "main"}
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                >
+                    {user ? (
+                        <>
+                            <Stack.Screen name="home" component={Home} />
+                            <Stack.Screen name="main" component={MainScreen} />
+                            <Stack.Screen name="profile" component={Profile} />
+                            <Stack.Screen name="map" component={Map} />
+                            <Stack.Screen name="feature" component={Feature} />
+                        </>
+                    ) : (
+                        <>
+                            <Stack.Screen name="getstarted" component={GetStarted} />
+                            <Stack.Screen name="load" component={Load} />
+                            <Stack.Screen name="signin" component={Signin} />
+                        </>
+                    )}
+                </Stack.Navigator>
+            </SafeAreaProvider>
+        </NavigationContainer>
+    );
 }
-
-
