@@ -73,7 +73,3 @@ web-build/
 dist/
 
 # @end expo-cli
-
-
-signingReport
-keystore-generate.txt
