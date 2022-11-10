@@ -9,7 +9,7 @@ const Feature = ({}) => {
     return(
         <SafeAreaView style={styles.container}>
             <Text>
-                Sini buat explore hiking spots
+                Sini buat explore hiking and waterfall spots
             </Text>
         </SafeAreaView>
     )
