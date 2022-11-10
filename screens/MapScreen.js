@@ -9,7 +9,7 @@ const Map = ({}) => {
     return(
         <SafeAreaView style={styles.container}>
             <Text>
-                Hello
+                Sini letak Google map ngn tracks
             </Text>
         </SafeAreaView>
     )
