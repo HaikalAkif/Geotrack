@@ -8,7 +8,7 @@ const windowHeight = Dimensions.get("window").height;
 const Home = ({}) => {
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="dark" backgroundColor="#000" />
+            {/* <StatusBar style="dark" backgroundColor="#000" /> */}
             <SafeAreaView style={styles.container1}>
                 <Text style={styles.title}>Sini buat FYP ngn algorithms</Text>
             </SafeAreaView>
