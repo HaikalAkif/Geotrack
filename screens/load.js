@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, Dimensions, TextInput, Pressable } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -9,11 +9,10 @@ const Load = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.container1}>
-        <Image 
-        style={styles.bird}
-        source={require("../assets/bird.png")}
-        />
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>Sign Up Now</Text>
+        <Text style={styles.account}>
+          Already have an account? <Text style={styles.signIn} onPress={() => navigation.navigate('signin')}>Sign In</Text>
+        </Text>
         <TextInput
           style={styles.input}
           placeholder="Name"
@@ -45,9 +44,6 @@ const Load = ({ navigation }) => {
           <Text style={styles.fbBut}>Sign In with Facebook</Text>
         </Pressable>
       </SafeAreaView>
-        <Text style={styles.account}>
-          Already have an account? <Text style={styles.signIn} onPress={() => navigation.navigate('signin')}>Sign In</Text>
-        </Text>
     </SafeAreaView>
   )
 }
@@ -57,17 +53,27 @@ export default Load
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#eee",
+      backgroundColor: "#8EF6D1",
       height: windowHeight,
       width: windowWidth,
     },
     title: {
-      textAlign: 'center',
-      fontSize: 50,
+      paddingLeft: 20,
+      fontSize: 40,
       fontWeight: 'bold',
       color: '#000',
-      marginBottom: 60,
-      marginTop: 50,
+      marginTop: 40,
+      marginLeft: 10,
+    },
+    account: {
+      paddingLeft: 20,
+      fontSize: 16,
+      marginVertical: 20,
+      marginLeft: 10,
+    },
+    signIn: {
+      color: '#0000FF',
+      textDecorationLine: 'underline',
     },
     input: {
       borderRadius: 10,
@@ -80,13 +86,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#bbb'
     },
     signup: {
-      backgroundColor: '#87F7D2',
-      borderRadius: 10,
-      marginLeft: 30,
-      marginRight: 30,
+      backgroundColor: '#fff',
+      borderRadius: 40,
+      marginHorizontal: 50,
       marginBottom: 40,
-      paddingTop: 5,
-      paddingBottom: 5,
+      paddingVertical: 6,
+      elevation: 8,
     },
     signupBut: {
       fontSize: 16,
@@ -106,12 +111,6 @@ const styles = StyleSheet.create({
       fontSize: 16,
       alignSelf: 'center',
       marginVertical: 20,
-    },
-    bird: {
-      position: 'absolute',
-      height: 100,
-      width: 300,
-      top: 20,
     },
     google: {
       borderRadius: 10,
@@ -139,14 +138,5 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       color: '#fff',
     },
-    account: {
-      alignSelf: 'center',
-      marginTop: 45,
-      fontSize: 16,
-    },
-    signIn: {
-      color: '#0000FF',
-      textDecorationLine: 'underline',
-    }
     
   })
