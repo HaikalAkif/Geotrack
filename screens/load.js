@@ -1,5 +1,6 @@
 import { StyleSheet, Text, Dimensions, TextInput, Pressable } from 'react-native'
 import React from 'react'
+import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const windowWidth = Dimensions.get("window").width;
@@ -8,6 +9,7 @@ const windowHeight = Dimensions.get("window").height;
 const Load = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" backgroundColor="#000" />
       <SafeAreaView style={styles.container1}>
         <Text style={styles.title}>Sign Up Now</Text>
         <Text style={styles.account}>
