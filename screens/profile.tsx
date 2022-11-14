@@ -42,7 +42,7 @@ const Profile = () => {
                     id={0}
                     name="Haikal Akif"
                     accountName="ikool.s"
-                    profileImage={require('../../storage/images/userProfile.png')}
+                    // profileImage={require('../../storage/images/userProfile.png')}
                 />
             </SafeAreaView>
         </SafeAreaView>

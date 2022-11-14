@@ -10,6 +10,8 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -45,9 +47,11 @@ const Load = ({ navigation }: Params) => {
             </SafeAreaView>
             <SafeAreaView>
                 <Pressable style={styles.google}>
+                    <FontAwesomeIcon icon={faGoogle} style={{ marginRight: 6 }} />
                     <Text style={styles.googleBut}>Sign In with Google</Text>
                 </Pressable>
                 <Pressable style={styles.fb}>
+                    <FontAwesomeIcon icon={faFacebook} style={{ marginRight: 6 }} color='#fff' />
                     <Text style={styles.fbBut}>Sign In with Facebook</Text>
                 </Pressable>
             </SafeAreaView>
@@ -132,6 +136,9 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginHorizontal: 40,
         elevation: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     googleBut: {
         fontSize: 14,
@@ -145,6 +152,9 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginHorizontal: 40,
         elevation: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     fbBut: {
         fontSize: 14,
