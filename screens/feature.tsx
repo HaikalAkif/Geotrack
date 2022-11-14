@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Dimensions, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, Dimensions, Pressable } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 
