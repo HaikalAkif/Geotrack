@@ -8,14 +8,18 @@ import {
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { GeotrackerScreenParams } from "../types/ScreenRoutes";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const Load = ({ navigation }) => {
+type Params = NativeStackScreenProps<GeotrackerScreenParams, 'load'>
+
+const Load = ({ navigation }: Params) => {
     return (
         <SafeAreaView style={styles.container}>
-            <SafeAreaView style={styles.container1}>
+            <SafeAreaView>
                 <Image
                     style={styles.bird}
                     source={require("../assets/bird.png")}
