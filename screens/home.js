@@ -1,5 +1,6 @@
-import { StyleSheet, Text, Dimensions, Pressable, Image } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, Dimensions, Pressable, Image } from 'react-native'
+import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const windowWidth = Dimensions.get("window").width;
