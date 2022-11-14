@@ -32,7 +32,7 @@ const Profile = () => {
             <SafeAreaView style={styles.profileBody}>
                 <ProfileBody
                     name="Haikal Akif"
-                    accountName="ikool.s"
+                    accountName="eykxl.s"
                     //   profileImage={require('../../storage/images/userProfile.png')}
                     followers="365"
                     following="17"
@@ -41,7 +41,7 @@ const Profile = () => {
                 <ProfileButtons
                     id={0}
                     name="Haikal Akif"
-                    accountName="ikool.s"
+                    accountName="eykxl.s"
                     // profileImage={require('../../storage/images/userProfile.png')}
                 />
             </SafeAreaView>
