@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#000",
         left: 20,
-        top: 400,
+        top: 350,
     },
     desc: {
         position: "absolute",
         fontSize: 16,
         color: "#000",
         left: 25,
-        top: 450,
+        top: 400,
         marginTop: 10,
     },
     Pressable: {
