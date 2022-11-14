@@ -10,6 +10,10 @@ const Map = ({}) => {
         <SafeAreaView style={styles.container}>
             <Text>
                 Sini letak Google map ngn tracks
+                yokooooooo
+            </Text>
+            <Text>
+                Text papelah
             </Text>
         </SafeAreaView>
     )
