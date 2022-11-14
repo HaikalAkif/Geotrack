@@ -11,6 +11,7 @@ const Map = ({}) => {
             <Text>
                 Sini letak Google map ngn tracks
                 yokooooooo
+                yolaaaaaaa
             </Text>
             <Text>
                 Text papelah
