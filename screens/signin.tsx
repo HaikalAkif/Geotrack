@@ -1,19 +1,26 @@
 import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, TouchableHighlight } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
+import { GeotrackerScreenParams } from '../types/ScreenRoutes';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const Signin = ({ navigation }) => {
+type Params = NativeStackScreenProps<GeotrackerScreenParams, 'signin'>
+
+const Signin = ({ navigation }: Params) => {
     return (  
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={styles.container1}>
-                <Image 
-                    style={styles.back}
-                    source={require("../assets/arrow.png")}
+                <Pressable
                     onPress={() => navigation.navigate('load')}
-                />
+                >
+                    <Image 
+                        style={styles.back}
+                        source={require("../assets/arrow.png")}
+                    />
+                </Pressable>
                 <Text style={styles.title}>Sign In</Text>
                 <Image
                     style={styles.mount}

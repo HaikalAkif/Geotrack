@@ -2,11 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, Dimensions, Image, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Video from "react-native-video";
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const GetStarted = ({ navigation }) => {
+type Params = NativeStackScreenProps<GeotrackerScreenParams, 'getstarted'>
+
+const GetStarted = ({ navigation }: Params) => {
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="dark" backgroundColor="#000" />
@@ -26,7 +32,7 @@ const GetStarted = ({ navigation }) => {
             </Text>
             <Pressable
                 style={styles.Pressable}
-                onPress={() => navigation.navigate("load")}
+                onPress={() => navigation.navigate('load')}
             >
                 <Text style={styles.button}>Get Started</Text>
             </Pressable>
