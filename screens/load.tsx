@@ -5,6 +5,7 @@ import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { useNavigation } from '@react-navigation/native'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -15,14 +16,18 @@ const Load = ({ navigation }: Params) => {
     return (
         <SafeAreaView style={styles.container}>
             <SafeAreaView>
-                <Image
-                    style={styles.bird}
-                    source={require("../assets/bird.png")}
-                />
                 <Text style={styles.title}>Sign Up</Text>
-                <TextInput style={styles.input} placeholder="Name" />
-                <TextInput style={styles.input} placeholder="Email" />
-                <TextInput style={styles.input} placeholder="Password" />
+                    <Text style={styles.account}>
+                    Already have an account?{" "}
+                        <Text
+                            style={styles.signIn}
+                            onPress={() => navigation.navigate("signin")}>
+                            Sign In
+                        </Text>
+                    </Text>
+                <TextInput style={styles.input} placeholder="Name"/>
+                <TextInput style={styles.input} placeholder="Email"/>
+                <TextInput secureTextEntry={true} style={styles.input} placeholder="Password"/>
                 <Pressable
                     style={styles.signup}
                     onPress={() => navigation.navigate("home")}
@@ -48,15 +53,6 @@ const Load = ({ navigation }: Params) => {
                     <Text style={styles.fbBut}>Sign In with Facebook</Text>
                 </Pressable>
             </SafeAreaView>
-            <Text style={styles.account}>
-                Already have an account?{" "}
-                <Text
-                    style={styles.signIn}
-                    onPress={() => navigation.navigate("signin")}
-                >
-                    Sign In
-                </Text>
-            </Text>
         </SafeAreaView>
     );
 };
@@ -66,17 +62,27 @@ export default Load;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#ff5733",
+        backgroundColor: "#C1E1C1",
         height: windowHeight,
         width: windowWidth,
     },
     title: {
-        textAlign: "center",
-        fontSize: 50,
+        textAlign: "left",
+        fontSize: 40,
         fontWeight: "bold",
         color: "#000",
-        marginBottom: 60,
-        marginTop: 50,
+        marginLeft: 25,
+        marginTop: 70,
+    },
+    account: {
+        textAlign: "left",
+        marginLeft: 30,
+        fontSize: 16,
+        marginBottom: 40,
+    },
+    signIn: {
+        color: "#0000FF",
+        textDecorationLine: "underline",
     },
     input: {
         borderRadius: 10,
@@ -85,19 +91,18 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        paddingLeft: 7,
+        paddingLeft: 10,
         backgroundColor: "#bbb",
     },
     signup: {
-        backgroundColor: "#eee",
+        backgroundColor: "#097969",
         borderRadius: 10,
-        marginLeft: 30,
-        marginRight: 30,
+        marginHorizontal: 35,
         marginBottom: 40,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingVertical: 6,
     },
     signupBut: {
+        color: "#eee",
         fontSize: 16,
         alignSelf: "center",
     },
@@ -115,12 +120,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         alignSelf: "center",
         marginVertical: 20,
-    },
-    bird: {
-        position: "absolute",
-        height: 100,
-        width: 300,
-        top: 20,
     },
     google: {
         borderRadius: 10,
@@ -154,13 +153,5 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         color: "#fff",
     },
-    account: {
-        alignSelf: "center",
-        marginTop: 45,
-        fontSize: 16,
-    },
-    signIn: {
-        color: "#0000FF",
-        textDecorationLine: "underline",
-    },
+    
 });
