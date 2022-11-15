@@ -3,6 +3,7 @@ import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -38,7 +39,8 @@ const Signin = ({ navigation }: Params) => {
                     style={styles.input}
                     placeholder="Email"
                 />
-                <TextInput
+                <TextInput 
+                    secureTextEntry={true}
                     style={styles.input}
                     placeholder="Password"
                 />
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
         paddingBottom: 50,
     },
     container2: {
-        backgroundColor: '#87F7D2',
+        backgroundColor: '#097969',
         paddingTop: 20,
         paddingBottom: 200,
         borderRadius: 25,
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
       },
       forgot: {
-        color: '#565656',
+        color: '#eee',
         alignSelf: 'center',
       }
 })
