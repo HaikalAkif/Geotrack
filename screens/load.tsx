@@ -66,7 +66,7 @@ export default Load;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#eee",
+        backgroundColor: "#ff5733",
         height: windowHeight,
         width: windowWidth,
     },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#bbb",
     },
     signup: {
-        backgroundColor: "#87F7D2",
+        backgroundColor: "#eee",
         borderRadius: 10,
         marginLeft: 30,
         marginRight: 30,
