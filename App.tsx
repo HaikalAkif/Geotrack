@@ -18,7 +18,7 @@ export default function App() {
         <NavigationContainer>
             <SafeAreaProvider>
                 <Stack.Navigator
-                    initialRouteName='tabs'
+                    initialRouteName='getstarted'
                     screenOptions={{
                         headerShown: false,
                     }}
