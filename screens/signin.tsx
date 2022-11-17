@@ -44,7 +44,7 @@ const Signin = ({ navigation }: Params) => {
                     style={styles.input}
                     placeholder="Password"
                 />
-                <Pressable style={styles.signin} onPress={() => navigation.navigate('home')}>
+                <Pressable style={styles.signin} onPress={() => navigation.navigate("tabs")}>
                     <Text style={styles.signinBut}>Sign In</Text>
                 </Pressable>
                 <Text style={styles.forgot}>

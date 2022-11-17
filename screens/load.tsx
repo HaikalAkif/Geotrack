@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image } from "react-native";
+import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
@@ -15,7 +15,7 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'load'>
 const Load = ({ navigation }: Params) => {
     return (
         <SafeAreaView style={styles.container}>
-            <SafeAreaView>
+            <View>
                 <Text style={styles.title}>Sign Up</Text>
                     <Text style={styles.account}>
                     Already have an account?{" "}
@@ -30,7 +30,7 @@ const Load = ({ navigation }: Params) => {
                 <TextInput secureTextEntry={true} style={styles.input} placeholder="Password"/>
                 <Pressable
                     style={styles.signup}
-                    onPress={() => navigation.navigate("home")}
+                    onPress={() => navigation.navigate("tabs")}
                 >
                     <Text style={styles.signupBut}>Sign Up</Text>
                 </Pressable>
@@ -42,8 +42,8 @@ const Load = ({ navigation }: Params) => {
                 <Text style={styles.or}>
                     --------------- OR ---------------
                 </Text>
-            </SafeAreaView>
-            <SafeAreaView>
+            </View>
+            <View>
                 <Pressable style={styles.google}>
                     <FontAwesomeIcon icon={faGoogle} style={{ marginRight: 6 }} />
                     <Text style={styles.googleBut}>Sign In with Google</Text>
@@ -52,7 +52,7 @@ const Load = ({ navigation }: Params) => {
                     <FontAwesomeIcon icon={faFacebook} style={{ marginRight: 6 }} color='#fff' />
                     <Text style={styles.fbBut}>Sign In with Facebook</Text>
                 </Pressable>
-            </SafeAreaView>
+            </View>
         </SafeAreaView>
     );
 };
@@ -86,11 +86,9 @@ const styles = StyleSheet.create({
     },
     input: {
         borderRadius: 10,
-        marginLeft: 30,
-        marginRight: 30,
+        marginHorizontal: 30,
         marginBottom: 20,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingVertical: 5,
         paddingLeft: 10,
         backgroundColor: "#bbb",
     },
