@@ -72,8 +72,14 @@ const styles = StyleSheet.create({
     details: {
         marginLeft: 15,
         flexGrow: 1,
+        textShadowColor: '#777',
+        textShadowOffset: {width: 2, height: 2,},
+        textShadowRadius: 15,
     },
     rank: {
         color: '#aaa',
+        textShadowColor: '#777',
+        textShadowOffset: {width: 2, height: 2,},
+        textShadowRadius: 25,
     }
 })
