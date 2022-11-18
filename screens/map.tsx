@@ -1,7 +1,6 @@
 import { StyleSheet, Text, Dimensions, Pressable, Image, View, ScrollView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from '@react-navigation/native'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -14,6 +13,9 @@ const Map = ({}) => {
                     START YOUR JOURNEY
                 </Text>
                 <View style={styles.mapView} />
+                <Pressable style={styles.start}>
+                    <Text style={styles.hike}>HIKE NOW</Text>
+                </Pressable>
             </ScrollView>
         </SafeAreaView>
     )
@@ -39,5 +41,16 @@ const styles = StyleSheet.create({
         width: 330,
         borderRadius: 15,
         backgroundColor: '#ccc',
+    },
+    start: {
+        backgroundColor: '#c1f1c1',
+        marginTop: 15,
+        borderRadius: 10,
+        paddingVertical: 10,
+        marginHorizontal: 100,
+    },
+    hike: {
+        textAlign: 'center',
+        fontSize: 20,
     }
 })
