@@ -5,7 +5,6 @@ import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
-import { useNavigation } from '@react-navigation/native'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -27,7 +26,7 @@ const Load = ({ navigation }: Params) => {
                     </Text>
                 <TextInput style={styles.input} placeholder="Name"/>
                 <TextInput style={styles.input} placeholder="Email"/>
-                <TextInput secureTextEntry={true} style={styles.input} placeholder="Password"/>
+                <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" />
                 <Pressable
                     style={styles.signup}
                     onPress={() => navigation.navigate("tabs")}
@@ -62,7 +61,7 @@ export default Load;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#C1E1C1",
+        backgroundColor: "#c1e1c1",
         height: windowHeight,
         width: windowWidth,
     },
