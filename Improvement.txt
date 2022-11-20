@@ -1,0 +1,21 @@
+<<GetStarted>>
+-More elements
+
+<<Signup>>
+-eye icon in password placeholder
+
+<<Signin>>
+-eye icon in password placeholder
+-slide animation
+
+<<Home>>
+-Download content
+
+<<Explore>>
+-More elements
+
+<<Map>>
+-Proceed to step tracker, AR and timer
+
+<<EditProfile>>
+-Suggestion: User can put animated banner
