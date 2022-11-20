@@ -1,7 +1,7 @@
 export type GeotrackerScreenParams = {
     profile: undefined;
     home: undefined;
-    load: undefined;
+    signup: undefined;
     map: undefined;
     getstarted: undefined;
     signin: undefined;
