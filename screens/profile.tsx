@@ -26,7 +26,6 @@ const Profile = ({ navigation }: Params) => {
                             <Image style={{height: '100%', width: '100%'}} source={{
                                 uri:'https://imgs.search.brave.com/xoiuBYa9Hjew8o50pO9qYzhtwTNzS-8QuXGO6QoVWco/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jZG4y/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvYXZhdGFycy05/OS82Mi9hdmF0YXIt/MzcwLTQ1NjMyMi01/MTIucG5n'
                             }} />
-                            {/* Suggestion: User can put animated banner */}
                     </View>
                 </View>
                 <View>
@@ -63,7 +62,7 @@ const Profile = ({ navigation }: Params) => {
                 </View>
                 <View style={styles.post}>
                     <Pressable style={styles.postBtn}><Feather name="camera" size={24} color="black" /></Pressable>
-                    <Pressable style={styles.postBtn}><Feather name="bookmark" size={24} color="black" /></Pressable>
+                    <Pressable style={styles.postBtn}><Feather name="video" size={24} color="black" /></Pressable>
                 </View>
                 <View style={styles.pics}>
                     <View style={styles.pic} />

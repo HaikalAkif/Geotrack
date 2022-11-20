@@ -14,7 +14,7 @@ const Signin = ({ navigation }: Params) => {
     return (  
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={styles.container1}>
-                <Pressable onPress={() => navigation.navigate('load')} style={styles.back} >
+                <Pressable onPress={() => navigation.navigate('signup')} style={styles.back} >
                     <Ionicons name="arrow-back" size={30} color="black" />
                 </Pressable>
                 <Text style={styles.title}>Sign In</Text>

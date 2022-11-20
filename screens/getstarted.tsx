@@ -38,7 +38,7 @@ const GetStarted = ({ navigation }: Params) => {
             </Text>
             <Pressable
                 style={styles.Pressable}
-                onPress={() => navigation.navigate('load')}
+                onPress={() => navigation.navigate('signup')}
             >
                 <Text style={styles.button}>Get Started</Text>
             </Pressable>
