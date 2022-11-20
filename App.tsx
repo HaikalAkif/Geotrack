@@ -7,8 +7,9 @@ import Signin from "./screens/signin";
 import Home from "./screens/home";
 import Profile from "./screens/profile";
 import Map from "./screens/map";
-import Feature from "./screens/feature";
+import Explore from "./screens/explore";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
+import Tabs from "./Overlay/tabs";
 
 const Stack = createNativeStackNavigator<GeotrackerScreenParams>();
 
@@ -28,7 +29,8 @@ export default function App() {
                     <Stack.Screen name="home" component={Home} />
                     <Stack.Screen name="profile" component={Profile} />
                     <Stack.Screen name="map" component={Map} />
-                    <Stack.Screen name="feature" component={Feature} />
+                    <Stack.Screen name="explore" component={Explore} />
+                    <Stack.Screen name="tabs" component={Tabs} />
                 </Stack.Navigator>
             </SafeAreaProvider>
         </NavigationContainer>

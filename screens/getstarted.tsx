@@ -16,14 +16,18 @@ const GetStarted = ({ navigation }: Params) => {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style="dark" backgroundColor="#000" />
-            <Video
-                source={require("../Background/FogMount.mp4")}
+            {/* <Video
+                source={require("../Background/mountBG.gif")}
                 style={styles.backgroundVideo}
                 muted
                 repeat
                 resizeMode={"cover"}
                 rate={1.0}
                 ignoreSilentSwitch={"obey"}
+            /> */}
+            <Image 
+                source={require('../Background/mountBG.gif')}  
+                style={styles.gif}
             />
             <Text style={styles.name}>GEOTRACKER</Text>
             <Text style={styles.desc}>
@@ -54,13 +58,16 @@ const styles = StyleSheet.create({
         width: windowWidth,
     },
     backgroundVideo: {
-        // height: height,
         position: "absolute",
         top: 0,
         left: 0,
         alignItems: "stretch",
         bottom: 0,
         right: 0,
+    },
+    gif: { 
+        height: '100%',
+        width: '100%',
     },
     name: {
         fontSize: 40,
@@ -83,7 +90,7 @@ const styles = StyleSheet.create({
         bottom: 45,
         backgroundColor: "#eee",
         paddingVertical: 7,
-        paddingHorizontal: 30,
+        paddingHorizontal: 50,
         borderRadius: 5,
         elevation: 10,
     },

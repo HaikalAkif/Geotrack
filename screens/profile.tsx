@@ -3,6 +3,7 @@ import { SafeAreaView, Text, ScrollView, StyleSheet } from "react-native";
 import Entypo from '@expo/vector-icons/Entypo';
 import ProfileBody from "../components/profile/ProfileBody";
 import ProfileButtons from "../components/profile/ProfileButtons";
+import { useNavigation } from '@react-navigation/native'
 
 const Profile = () => {
 
@@ -24,7 +25,6 @@ const Profile = () => {
                 </SafeAreaView>
             );
         }
-
     }, [])
 
     return (

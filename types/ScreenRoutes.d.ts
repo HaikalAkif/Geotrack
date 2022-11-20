@@ -5,5 +5,6 @@ export type GeotrackerScreenParams = {
     map: undefined;
     getstarted: undefined;
     signin: undefined;
-    feature: undefined;
+    explore : undefined;
+    tabs: undefined;
 };
