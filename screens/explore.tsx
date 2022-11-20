@@ -74,9 +74,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         marginHorizontal: 5,
     },
-    colScroll: {
-
-    },
     rowScroll: {
         // display: 'flex',
         // flexDirection: 'row',

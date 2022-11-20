@@ -3,7 +3,7 @@ import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native'
+import { Ionicons } from '@expo/vector-icons';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -14,13 +14,8 @@ const Signin = ({ navigation }: Params) => {
     return (  
         <SafeAreaView style={styles.container}>
             <SafeAreaView style={styles.container1}>
-                <Pressable
-                    onPress={() => navigation.navigate('load')}
-                >
-                    <Image 
-                        style={styles.back}
-                        source={require("../assets/arrow.png")}
-                    />
+                <Pressable onPress={() => navigation.navigate('load')} style={styles.back} >
+                    <Ionicons name="arrow-back" size={30} color="black" />
                 </Pressable>
                 <Text style={styles.title}>Sign In</Text>
                 <Image
@@ -51,7 +46,6 @@ const Signin = ({ navigation }: Params) => {
                     Forgot your password?
                 </Text>
             </SafeAreaView>
-            
         </SafeAreaView>
     )
 }
@@ -75,18 +69,15 @@ const styles = StyleSheet.create({
         borderRadius: 25,
     },
     back: {
-        height: 50,
-        width: 50,
-        marginLeft: 15,
-        marginTop: 20,
-        position: 'absolute',
+        top: 10,
+        left: 20,
     },
     title: {
         textAlign: 'center',
         fontSize: 50,
         fontWeight: 'bold',
         color: '#000',
-        marginTop: 45,
+        marginTop: 25,
     },
     mount: {
         height: 150,
