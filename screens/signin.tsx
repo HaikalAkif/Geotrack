@@ -46,7 +46,6 @@ const Signin = ({ navigation }: Params) => {
                     Forgot your password?
                 </Text>
             </SafeAreaView>
-            
         </SafeAreaView>
     )
 }

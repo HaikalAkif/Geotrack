@@ -7,4 +7,6 @@ export type GeotrackerScreenParams = {
     signin: undefined;
     explore : undefined;
     tabs: undefined;
+    settings: undefined;
+    editProfile: undefined;
 };
