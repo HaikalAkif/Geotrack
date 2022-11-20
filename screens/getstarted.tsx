@@ -27,6 +27,10 @@ const GetStarted = ({ navigation }: Params) => {
                 source={require('../Background/mountBG.gif')}  
                 style={styles.gif}
             />
+            <Image 
+                source={require('../assets/GeoLogo.png')}  
+                style={styles.logo}
+            />
             <Text style={styles.name}>GEOTRACKER</Text>
             <Text style={styles.desc}>
                 The best view comes{"\n"}
@@ -68,21 +72,26 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
     },
+    logo: {
+        height: 120,
+        width: 120,
+        position: 'absolute',
+        top: 130,
+    },
     name: {
         fontSize: 40,
         position: "absolute",
         fontWeight: "bold",
-        color: "#eee",
-        left: 20,
-        top: 350,
+        color: "#121212",
+        top: 250,
     },
     desc: {
         position: "absolute",
         fontSize: 16,
-        color: "#eee",
-        left: 25,
-        top: 400,
+        color: "#343434",
+        top: 290,
         marginTop: 10,
+        textAlign: 'center',
     },
     Pressable: {
         position: "absolute",
