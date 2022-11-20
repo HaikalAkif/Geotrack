@@ -19,8 +19,8 @@ const Signin = ({ navigation }: Params) => {
                 </Pressable>
                 <Text style={styles.title}>Sign In</Text>
                 <Image
-                    style={styles.mount}
-                    source={require("../assets/mount.png")}
+                    style={styles.logo}
+                    source={require("../assets/GeoLogo.png")}
                 />
                 <Text style={styles.desc}>
                 Welcome Back.
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         color: '#000',
         marginTop: 25,
     },
-    mount: {
+    logo: {
         height: 150,
         width: 150,
         alignSelf: 'center',
