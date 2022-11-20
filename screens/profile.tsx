@@ -2,13 +2,17 @@ import React from "react";
 import { SafeAreaView, Text, View, ScrollView, Dimensions, StyleSheet, Image, StatusBar as RNStatusBar, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from '@expo/vector-icons';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
+type Params = NativeStackScreenProps<GeotrackerScreenParams, 'profile'>
+
 const statusbarHeight = RNStatusBar.currentHeight!;
 
-const Profile = ({}) => {
+const Profile = ({ navigation }: Params) => {
     return(
         <SafeAreaView style={styles.container}>
         <StatusBar style="dark" backgroundColor="#000" />
@@ -50,11 +54,11 @@ const Profile = ({}) => {
                 <View style={styles.btn}>
                     <Pressable style={styles.press}>
                         <Feather name="settings" size={16} color="black" />
-                        <Text style={styles.edit}>Edit Profile</Text>
+                        <Text style={styles.edit} onPress={() => navigation.navigate("editProfile")}>Edit Profile</Text>
                     </Pressable>
                     <Pressable style={styles.press}>
                         <Feather name="edit" size={16} color="black" />
-                        <Text style={styles.edit}>Settings</Text>
+                        <Text style={styles.edit} onPress={() => navigation.navigate("settings")}>Settings</Text>
                     </Pressable>
                 </View>
                 <View style={styles.post}>
