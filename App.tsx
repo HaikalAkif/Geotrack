@@ -8,6 +8,8 @@ import Home from "./screens/home";
 import Profile from "./screens/profile";
 import Map from "./screens/map";
 import Explore from "./screens/explore";
+import Settings from "./subScreens/settings";
+import EditProfile from "./subScreens/editProfile";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
 import Tabs from "./Overlay/tabs";
 
@@ -30,6 +32,8 @@ export default function App() {
                     <Stack.Screen name="profile" component={Profile} />
                     <Stack.Screen name="map" component={Map} />
                     <Stack.Screen name="explore" component={Explore} />
+                    <Stack.Screen name="settings" component={Settings} />
+                    <Stack.Screen name="editProfile" component={EditProfile} />
                     <Stack.Screen name="tabs" component={Tabs} />
                 </Stack.Navigator>
             </SafeAreaProvider>
