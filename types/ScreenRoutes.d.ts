@@ -9,4 +9,5 @@ export type GeotrackerScreenParams = {
     tabs: undefined;
     settings: undefined;
     editProfile: undefined;
+    forgot: undefined;
 };

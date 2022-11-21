@@ -16,7 +16,7 @@ const EditProfile = ({ navigation }: Params) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.topBar}>
                 <Pressable onPress={() => navigation.navigate('tabs')} style={styles.back}>
-                    <Ionicons name="arrow-back" size={22} color="black" />
+                    <Ionicons name="arrow-back" size={26} color="black" />
                 </Pressable>
                 <Text style={styles.title}>Edit Profile</Text>
             </View>

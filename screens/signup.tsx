@@ -39,7 +39,7 @@ const Signup = ({ navigation }: Params) => {
                     <Text style={styles.toss}>Privacy Policy</Text>
                 </Text>
                 <Text style={styles.or}>
-                    --------------- OR ---------------
+                    OR
                 </Text>
             </View>
             <View>

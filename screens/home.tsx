@@ -2,8 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, Dimensions, Pressable, View, StatusBar as RNStatusBar, Image } from 'react-native'
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context"
-import { useNavigation } from '@react-navigation/native';
-import { Entypo } from '@expo/vector-icons'; 
+import { Entypo, AntDesign, Octicons } from '@expo/vector-icons'; 
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -32,7 +31,14 @@ const Home = ({}) => {
                 </View>
                 <Entypo name="dots-three-vertical" size={20} color="white" />
             </View>
-
+            <View style={styles.container2}>
+                <View style={styles.inter}>
+                    <AntDesign style={styles.interaction} name="hearto" size={30} color="white" />
+                    <Octicons style={styles.interaction} name="comment" size={30} color="white" />
+                    <Octicons style={styles.interaction} name="share-android" size={30} color="white" />
+                </View>
+                <Octicons name="report" size={30} color="white" />
+            </View>
         </SafeAreaView>
     )
 }  
@@ -50,6 +56,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 20,
+    },
+    container2: {
+        position: 'absolute',
+        bottom: statusbarHeight,
+        left: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     card: {
         height: '100%',
@@ -81,5 +94,12 @@ const styles = StyleSheet.create({
         textShadowColor: '#777',
         textShadowOffset: {width: 2, height: 2,},
         textShadowRadius: 25,
+    },
+    inter: {
+        flexDirection: 'row',
+        flexGrow: 1,
+    },
+    interaction: {
+        marginRight: 30,
     }
 })

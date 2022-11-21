@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
@@ -13,7 +13,7 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'signin'>
 const Signin = ({ navigation }: Params) => {
     return (  
         <SafeAreaView style={styles.container}>
-            <SafeAreaView style={styles.container1}>
+            <View style={styles.container1}>
                 <Pressable onPress={() => navigation.navigate('signup')} style={styles.back} >
                     <Ionicons name="arrow-back" size={30} color="black" />
                 </Pressable>
@@ -28,8 +28,8 @@ const Signin = ({ navigation }: Params) => {
                 <Text style={styles.desc}>
                 Log in and start exploring
                 </Text>
-            </SafeAreaView>
-            <SafeAreaView style={styles.container2}>
+            </View>
+            <View style={styles.container2}>
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
@@ -42,10 +42,12 @@ const Signin = ({ navigation }: Params) => {
                 <Pressable style={styles.signin} onPress={() => navigation.navigate("tabs")}>
                     <Text style={styles.signinBut}>Sign In</Text>
                 </Pressable>
-                <Text style={styles.forgot}>
-                    Forgot your password?
-                </Text>
-            </SafeAreaView>
+                <Pressable>
+                    <Text style={styles.forgot} onPress={() => navigation.navigate("forgot")}>
+                        Forgot your password?
+                    </Text>
+                </Pressable>
+            </View>
         </SafeAreaView>
     )
 }
@@ -92,30 +94,26 @@ const styles = StyleSheet.create({
     },
     input: {
         borderRadius: 10,
-        marginLeft: 30,
-        marginRight: 30,
+        marginHorizontal: 30,
         marginBottom: 20,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingVertical: 5,
         paddingLeft: 7,
         backgroundColor: '#bbb'
-      },
-      signin: {
+    },
+    signin: {
         backgroundColor: '#eee',
         borderRadius: 10,
-        marginLeft: 60,
-        marginRight: 60,
+        marginHorizontal: 60,
         marginBottom: 30,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingVertical: 5,
         elevation: 10,
-      },
-      signinBut: {
+    },
+    signinBut: {
         fontSize: 16,
         alignSelf: 'center',
-      },
-      forgot: {
+    },
+    forgot: {
         color: '#eee',
         alignSelf: 'center',
-      }
+    }
 })
