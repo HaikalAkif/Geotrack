@@ -12,7 +12,12 @@ const Map = ({}) => {
                 <Text style={styles.title}>
                     START YOUR JOURNEY
                 </Text>
-                <View style={styles.mapView} />
+                <View style={styles.mapView}>
+                    <Image 
+                    source={require('../assets/googlemap.jpg')}  
+                    style={{height: 570, width: '100%'}}
+                    />
+                </View> 
                 <Pressable style={styles.start}>
                     <Text style={styles.hike}>HIKE NOW</Text>
                 </Pressable>
@@ -38,8 +43,7 @@ const styles = StyleSheet.create({
     mapView: {
         marginTop: 20,
         height: 570,
-        width: 330,
-        borderRadius: 15,
+        width: windowWidth,
         backgroundColor: '#ccc',
     },
     start: {
