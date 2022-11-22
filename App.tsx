@@ -12,10 +12,43 @@ import Settings from "./subScreens/settings";
 import EditProfile from "./subScreens/editProfile";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
 import Tabs from "./Overlay/tabs";
+import { useEffect, useState } from "react";
+
+import * as Font from 'expo-font';
+import { Ionicons } from "@expo/vector-icons";
+import { Text, View } from "react-native";
 
 const Stack = createNativeStackNavigator<GeotrackerScreenParams>();
 
 export default function App() {
+
+    const [ isLoading, setIsLoading ] = useState(true)
+
+    useEffect(() => {
+
+        async function loadFonts() {
+
+            await Font.loadAsync({
+                ...Ionicons.font,
+                'DMSans-Regular': require('./assets/fonts/DM-Sans/DMSans-Regular.ttf'),
+                'DMSans-Medium': require('./assets/fonts/DM-Sans/DMSans-Medium.ttf'),
+                'DMSans-Bold': require('./assets/fonts/DM-Sans/DMSans-Bold.ttf'),
+            })
+
+            setIsLoading(false)
+
+        }
+
+        loadFonts();
+
+    }, [])
+
+    if (isLoading) return (
+        <View>
+            <Text>Loading...</Text>
+        </View>
+    )
+
     return (
         <NavigationContainer>
             <SafeAreaProvider>
