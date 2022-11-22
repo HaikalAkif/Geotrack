@@ -5,6 +5,7 @@ import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
+import GButton from "../components/GButton";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -27,12 +28,12 @@ const Signup = ({ navigation }: Params) => {
                 <TextInput style={styles.input} placeholder="Name"/>
                 <TextInput style={styles.input} placeholder="Email"/>
                 <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" />
-                <Pressable
+                <GButton
                     style={styles.signup}
                     onPress={() => navigation.navigate("tabs")}
                 >
-                    <Text style={styles.signupBut}>Sign Up</Text>
-                </Pressable>
+                    Sign Up
+                </GButton>
                 <Text style={styles.tos}>
                     By creating your account, you agreed to Geotracker{" "}
                     <Text style={styles.toss}>Terms of Service</Text> and{" "}
@@ -68,16 +69,17 @@ const styles = StyleSheet.create({
     title: {
         textAlign: "left",
         fontSize: 40,
-        fontWeight: "bold",
         color: "#000",
         marginLeft: 25,
         marginTop: 70,
+        fontFamily: 'DMSans-Bold'
     },
     account: {
         textAlign: "left",
         marginLeft: 30,
         fontSize: 16,
         marginBottom: 40,
+        fontFamily: 'DMSans-Regular'
     },
     signIn: {
         color: "#0000FF",
