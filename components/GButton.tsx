@@ -35,5 +35,6 @@ const styles = StyleSheet.create({
     signupBut: {
         fontSize: 16,
         alignSelf: "center",
+        color: '#fff',
     },
 })
