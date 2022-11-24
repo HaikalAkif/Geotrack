@@ -17,9 +17,6 @@ const SearchBar = ({ style }: SearchBarParams) => {
             <TouchableOpacity style={styles.cancel} onPress={() => setText('')}>
                 <MaterialIcons name="cancel" size={20} color="#777" />
             </TouchableOpacity>
-            {/* <Pressable>
-                <Text style={styles.cancel}>Cancel</Text>
-            </Pressable> */}
         </View>
     )
 }

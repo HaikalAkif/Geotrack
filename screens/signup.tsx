@@ -6,6 +6,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import GButton from "../components/GButton";
+import Reveal from "../components/input/reveal";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -28,6 +29,7 @@ const Signup = ({ navigation }: Params) => {
                 <TextInput style={styles.input} placeholder="Name"/>
                 <TextInput style={styles.input} placeholder="Email"/>
                 <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" />
+
                 <GButton
                     style={styles.signup}
                     onPress={() => navigation.navigate("tabs")}

@@ -1,8 +1,9 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import GetStarted from "./screens/getstarted";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useEffect, useState } from "react";
 
+import GetStarted from "./screens/getstarted";
 import Signup from "./screens/signup";
 import Signin from "./screens/signin";
 import Home from "./screens/home";
@@ -14,7 +15,6 @@ import EditProfile from "./subScreens/editProfile";
 import Forgot from "./subScreens/forgot";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
 import Tabs from "./Overlay/tabs";
-import { useEffect, useState } from "react";
 
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
