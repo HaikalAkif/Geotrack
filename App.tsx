@@ -20,6 +20,8 @@ import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
 const Stack = createNativeStackNavigator<GeotrackerScreenParams>();
 
 export default function App() {
@@ -52,27 +54,30 @@ export default function App() {
     )
 
     return (
-        <NavigationContainer>
-            <SafeAreaProvider>
-                <Stack.Navigator
-                    initialRouteName='getstarted'
-                    screenOptions={{
-                        headerShown: false,
-                    }}
-                >
-                    <Stack.Screen name="getstarted" component={GetStarted} />
-                    <Stack.Screen name="signup" component={Signup} />
-                    <Stack.Screen name="signin" component={Signin} />
-                    <Stack.Screen name="home" component={Home} />
-                    <Stack.Screen name="profile" component={Profile} />
-                    <Stack.Screen name="map" component={Map} />
-                    <Stack.Screen name="explore" component={Explore} />
-                    <Stack.Screen name="settings" component={Settings} />
-                    <Stack.Screen name="editProfile" component={EditProfile} />
-                    <Stack.Screen name="forgot" component={Forgot} />
-                    <Stack.Screen name="tabs" component={Tabs} />
-                </Stack.Navigator>
-            </SafeAreaProvider>
-        </NavigationContainer>
+        <SafeAreaProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <NavigationContainer>
+                    <Stack.Navigator
+                        initialRouteName='getstarted'
+                        screenOptions={{
+                            headerShown: false,
+                            animation: 'fade_from_bottom'
+                        }}
+                    >
+                        <Stack.Screen name="getstarted" component={GetStarted} />
+                        <Stack.Screen name="signup" component={Signup} />
+                        <Stack.Screen name="signin" component={Signin} />
+                        <Stack.Screen name="home" component={Home} />
+                        <Stack.Screen name="profile" component={Profile} />
+                        <Stack.Screen name="map" component={Map} />
+                        <Stack.Screen name="explore" component={Explore} />
+                        <Stack.Screen name="settings" component={Settings} />
+                        <Stack.Screen name="editProfile" component={EditProfile} />
+                        <Stack.Screen name="forgot" component={Forgot} />
+                        <Stack.Screen name="tabs" component={Tabs} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </GestureHandlerRootView>
+        </SafeAreaProvider>
     );
 }
