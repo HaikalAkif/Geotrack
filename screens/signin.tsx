@@ -1,9 +1,10 @@
 import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, View } from 'react-native'
-import React from 'react'
+import React, { useRef, useCallback, useMemo } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+// import BottomSheet from '@gorhom/bottom-sheet';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -11,6 +12,7 @@ const windowHeight = Dimensions.get("window").height;
 type Params = NativeStackScreenProps<GeotrackerScreenParams, 'signin'>
 
 const Signin = ({ navigation }: Params) => {
+
     return (  
         <SafeAreaView style={styles.container}>
             <View style={styles.container1}>
@@ -23,10 +25,10 @@ const Signin = ({ navigation }: Params) => {
                     source={require("../assets/GeoLogo.png")}
                 />
                 <Text style={styles.desc}>
-                Welcome Back.
+                    Welcome Back
                 </Text>
                 <Text style={styles.desc}>
-                Log in and start exploring
+                    Log in and start exploring
                 </Text>
             </View>
             <View style={styles.container2}>

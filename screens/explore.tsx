@@ -12,13 +12,13 @@ const windowHeight = Dimensions.get("window").height;
 const Feature = ({}) => {
     return(
         <SafeAreaView style={styles.container}>
-            <StatusBar style="dark" backgroundColor="#000" />
+            <StatusBar style='light' />
             <View style={styles.topBar}>
                 <Ionicons name="ios-menu" size={24} color="black" />
                 <Text style={styles.title}>Explore</Text>
                 <FontAwesome name="filter" size={18} color="black" />
             </View>
-            <ScrollView style={styles.colScroll}>
+            <ScrollView>
                 <SearchBar style={{ borderWidth: 0.5, marginHorizontal: 10, marginTop: 10 }} />
                 <Text style={styles.subTitle}>Nearby trails</Text>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.rowScroll}>

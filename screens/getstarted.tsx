@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, Dimensions, Image, Pressable, SafeAreaView } from "react-native";
+import { StyleSheet, Text, Dimensions, Image, Pressable, SafeAreaView, View } from "react-native";
 import Video from "react-native-video";
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
@@ -13,36 +13,36 @@ const GetStarted = ({ navigation }: Params) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="dark" backgroundColor="#000" />
-            {/* <Video
-                source={require("../Background/mountBG.gif")}
-                style={styles.backgroundVideo}
-                muted
-                repeat
-                resizeMode={"cover"}
-                rate={1.0}
-                ignoreSilentSwitch={"obey"}
-            /> */}
+            <StatusBar style="light" backgroundColor="#000" />
             <Image 
                 source={require('../Background/mountBG.gif')}  
                 style={styles.gif}
             />
-            <Image 
-                source={require('../assets/GeoLogo.png')}  
-                style={styles.logo}
-            />
-            <Text style={styles.name}>GEOTRACKER</Text>
-            <Text style={styles.desc}>
-                The best view comes{"\n"}
-                after the hardest climb
-            </Text>
-            <Pressable
-                style={styles.Pressable}
-                onPress={() => navigation.navigate('signup')}
-            >
-                <Text style={styles.button}>Get Started</Text>
-            </Pressable>
-            <Text style={styles.ver}>V 1.0.09</Text>
+            <View style={{ flex: 1, marginVertical: 20, marginHorizontal: 30 }}>
+                <View style={{ flex: 1, alignItems: 'center' }}>
+                    <Image 
+                        source={require('../assets/GeoLogo.png')}  
+                        style={styles.logo}
+                    />
+                    <Text style={styles.name}>GEOTRACKER</Text>
+                    <Text style={styles.desc}>
+                        The best view comes{"\n"}
+                        after the hardest climb
+                    </Text>
+                </View>
+                <View style={{ alignItems: 'center' }}>
+                    <Pressable
+                        style={styles.pressable}
+                        onPress={() => navigation.navigate('signup')}
+                        android_ripple={{
+                            color: '#888'
+                        }}
+                    >
+                        <Text style={styles.button}>Get Started</Text>
+                    </Pressable>
+                    <Text style={styles.ver}>V 1.0.09</Text>  
+                </View>
+            </View>
         </SafeAreaView>
     );
 };
@@ -53,24 +53,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    background: {
-        height: windowHeight,
-        width: windowWidth,
-    },
-    backgroundVideo: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        alignItems: "stretch",
-        bottom: 0,
-        right: 0,
     },
     gif: { 
         height: '100%',
         width: '100%',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
     },
     logo: {
         height: 120,
@@ -93,22 +84,23 @@ const styles = StyleSheet.create({
         marginTop: 10,
         textAlign: 'center',
     },
-    Pressable: {
-        position: "absolute",
-        bottom: 45,
+    pressable: {
         backgroundColor: "#eee",
         paddingVertical: 7,
-        paddingHorizontal: 50,
         borderRadius: 5,
-        elevation: 10,
+        marginBottom: 10,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%'
     },
     button: {
         color: "#000",
+        fontFamily: 'DMSans-Regular'
     },
     ver: {
-        position: 'absolute',
-        bottom: 10,
         fontSize: 14,
         color: '#eee',
+        fontFamily: 'DMSans-Regular'
     }
 });
