@@ -3,7 +3,7 @@ import { StyleSheet, Text, Dimensions, Pressable, View, StatusBar as RNStatusBar
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Entypo, AntDesign, Octicons } from '@expo/vector-icons';
-import { BlurView } from '@react-native-community/blur'
+import GButton from '../components/GButton';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -13,19 +13,13 @@ const statusbarHeight = RNStatusBar.currentHeight!;
 const Home = ({}) => {
     return (
         <SafeAreaView style={styles.container}>
-            <StatusBar style="dark" backgroundColor="#000" />
             <View style={styles.card}>
-                {/* <Image style={{height: '100%', width: '100%'}} source={{
-                    uri:'https://imgs.search.brave.com/ooGJf4Exw4SvYiMroKXMt8sE-LlySm1bS9H-YfnJIm4/rs:fit:736:1104:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC81OS83My84My81/OTczODNiYTc5YjU2/NWY3NzgzMmRiZWVm/YWM2MjFhYi5qcGc'
-                }} /> */}
                 <View style={styles.container1}>
-                    <View style={{ overflow: 'hidden', flexDirection: 'row', flexGrow: 1, padding: 10, borderRadius: 50, marginRight: 20 }}>
-                        <BlurView
-                            style={styles.absolute}
-                            blurType="light"
-                            blurAmount={10}
-                            reducedTransparencyFallbackColor="#00000000"
-                        />
+                    <GButton 
+                        style={{ flexDirection: 'row', padding: 10, justifyContent: 'flex-start', backgroundColor: 'transparent' }} 
+                        containerStyle={{ borderRadius: 50, marginRight: 10, borderWidth: 0.25, borderColor: '#fff', height: 60, flexGrow: 1 }}
+                        rippleColor='#ccc'
+                    >
                         <View style={styles.circle}>
                             <Image style={{height: '100%', width: '100%'}} source={{
                                 uri:'https://scontent.fkul11-2.fna.fbcdn.net/v/t1.18169-9/11040630_864319350325063_1510890642193094314_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=174925&_nc_ohc=vFbAG0Hhd-0AX9kMLWA&_nc_ht=scontent.fkul11-2.fna&oh=00_AfBnjPgTvjcUWEHpWx9_5vo_zqgnpd2F1Sibg5SCC8P8sQ&oe=639B5355'
@@ -35,19 +29,14 @@ const Home = ({}) => {
                             <Text style={styles.username}>arghmaan</Text>
                             <Text style={styles.rank}>Newbie</Text>
                         </View>
-                    </View>
-                    <View style={{ borderRadius: 50, overflow: 'hidden' }}>
-                        <BlurView
-                            style={styles.absolute}
-                            blurType="light"
-                            blurAmount={10}
-                            reducedTransparencyFallbackColor="#00000000"
-                        />
-                        <Entypo name="dots-three-vertical" size={20} color="white" style={{ padding: 18 }} />
-                    </View>
+                    </GButton>
+                    <GButton rippleColor='#ccc' style={{ backgroundColor: 'transparent' }} containerStyle={{ borderRadius: 50, borderWidth: 0.25, borderColor: '#fff', height: 60, width: 60 }}>
+                        <Entypo name="dots-three-vertical" size={20} color="#fff" style={{ padding: 18 }} />
+                    </GButton>
                 </View>
                 <Image style={{height: '100%', width: '100%', zIndex: -1}} source={{
                     uri:'https://imgs.search.brave.com/ooGJf4Exw4SvYiMroKXMt8sE-LlySm1bS9H-YfnJIm4/rs:fit:736:1104:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC81OS83My84My81/OTczODNiYTc5YjU2/NWY3NzgzMmRiZWVm/YWM2MjFhYi5qcGc'
+                    // uri: 'https://images.unsplash.com/photo-1521728935364-00584c026397?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHdoaXRlJTIwYWVzdGhldGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
                 }} />
             </View>
             <View style={styles.container2}>
@@ -70,7 +59,7 @@ const styles = StyleSheet.create({
     },
     container1: {
         position: 'absolute',
-        top: statusbarHeight,
+        top: 10,
         left: 0,
         flexDirection: 'row',
         alignItems: 'center',
@@ -98,25 +87,23 @@ const styles = StyleSheet.create({
     },
     username: {
         fontSize: 18,
-        color: '#333',
-        fontFamily: 'DMSans-Medium'
-        // textShadowColor: '#777',
-        // textShadowOffset: {width: 2, height: 2,},
-        // textShadowRadius: 15,
+        color: '#fff',
+        fontFamily: 'DMSans-Medium',
+        textShadowColor: '#777',
+        textShadowOffset: {width: 0.5, height: 0.5,},
+        textShadowRadius: 5,
     },
     details: {
         marginLeft: 15,
         position: 'relative'
-        // textShadowColor: '#777',
-        // textShadowOffset: {width: 2, height: 2,},
-        // textShadowRadius: 15,
     },
     rank: {
-        color: '#aaa',
-        fontSize: 12
-        // textShadowColor: '#777',
-        // textShadowOffset: {width: 2, height: 2,},
-        // textShadowRadius: 25,
+        color: '#eee',
+        fontSize: 12,
+        textShadowColor: '#777',
+        textShadowOffset: {width: 0.5, height: 0.5,},
+        textShadowRadius: 5,
+        fontFamily: 'DMSans-Regular',
     },
     inter: {
         flexDirection: 'row',

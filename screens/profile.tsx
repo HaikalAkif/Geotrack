@@ -2,8 +2,13 @@ import React from "react";
 import { SafeAreaView, Text, View, ScrollView, Dimensions, StyleSheet, Image, StatusBar as RNStatusBar, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from '@expo/vector-icons';
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
+import { BottomTabNavigationProp, BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import { CompositeScreenProps } from "@react-navigation/native";
+import { BottomTabRoutes } from "../types/BotttomTabRoutes";
+import GButton from "../components/GButton";
+import { GeotrackerTheme } from "../theme/GeotrackerTheme";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -12,10 +17,10 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'profile'>
 
 const statusbarHeight = RNStatusBar.currentHeight!;
 
-const Profile = ({ navigation }: Params) => {
+const Profile = ({ navigation, route }: Params) => {
     return(
         <SafeAreaView style={styles.container}>
-        <StatusBar style="dark" backgroundColor="#000" />
+        <StatusBar style="light" backgroundColor="#000" />
             <ScrollView>
                 <View style={styles.card}>
                     <Image 
@@ -23,9 +28,9 @@ const Profile = ({ navigation }: Params) => {
                         style={{height: 170, width: '100%'}}
                     />
                     <View style={styles.circle}>
-                            <Image style={{height: '100%', width: '100%'}} source={{
-                                uri:'https://imgs.search.brave.com/xoiuBYa9Hjew8o50pO9qYzhtwTNzS-8QuXGO6QoVWco/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jZG4y/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvYXZhdGFycy05/OS82Mi9hdmF0YXIt/MzcwLTQ1NjMyMi01/MTIucG5n'
-                            }} />
+                        <Image style={{height: '100%', width: '100%'}} source={{
+                            uri:'https://imgs.search.brave.com/xoiuBYa9Hjew8o50pO9qYzhtwTNzS-8QuXGO6QoVWco/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jZG4y/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvYXZhdGFycy05/OS82Mi9hdmF0YXIt/MzcwLTQ1NjMyMi01/MTIucG5n'
+                        }} />
                     </View>
                 </View>
                 <View>
@@ -51,14 +56,14 @@ const Profile = ({ navigation }: Params) => {
                     </View>
                 </View>
                 <View style={styles.btn}>
-                    <Pressable style={styles.press}>
+                    <GButton containerStyle={styles.pressContainer} style={styles.press} onPress={() => navigation.navigate("editProfile")}>
                         <Feather name="settings" size={16} color="black" />
-                        <Text style={styles.edit} onPress={() => navigation.navigate("editProfile")}>Edit Profile</Text>
-                    </Pressable>
-                    <Pressable style={styles.press}>
+                        <Text style={styles.edit}>Edit Profile</Text>
+                    </GButton>
+                    <GButton containerStyle={styles.pressContainer} style={styles.press} onPress={() => navigation.navigate("settings")}>
                         <Feather name="edit" size={16} color="black" />
-                        <Text style={styles.edit} onPress={() => navigation.navigate("settings")}>Settings</Text>
-                    </Pressable>
+                        <Text style={styles.edit}>Settings</Text>
+                    </GButton>
                 </View>
                 <View style={styles.post}>
                     <Pressable style={styles.postBtn}><Feather name="camera" size={24} color="black" /></Pressable>
@@ -94,13 +99,13 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         top: 125,
-        borderWidth: 3,
-        borderColor: '#c1e1c1'
+        // borderWidth: 3,
+        // borderColor: '#c1e1c1'
     },
     username: {
         fontSize: 22,
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: GeotrackerTheme.font.bold
     },
     bio: {
         fontSize: 16,
@@ -124,23 +129,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    press: {
+    pressContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',
-        paddingVertical: 5,
-        paddingHorizontal: 40,
-        marginHorizontal: 10,
         marginTop: 20,
         borderRadius: 5,
-        borderWidth: 2,
-        borderColor: '#c1e1c1',
+        borderWidth: 0.5,
+        borderColor: '#ccc',
+        flex: 1,
+        marginHorizontal: 10
+    },
+    press: { 
+        flexDirection: 'row',
+        flexGrow: 1
     },
     edit: {
         textAlign: 'center',
         paddingLeft: 5,
+        fontFamily: GeotrackerTheme.font.regular
     },
     post: {
         display: 'flex',
