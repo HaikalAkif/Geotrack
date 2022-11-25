@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     signupBut: {
         fontSize: 16,
         alignSelf: "center",
-        fontFamily: 'DMSans-Regular'
+        fontFamily: 'DMSans-Regular',
+        color: '#fff',
     },
 })

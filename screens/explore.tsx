@@ -2,7 +2,6 @@ import { StyleSheet, Text, Dimensions, Pressable, ScrollView, View } from 'react
 import React from 'react'
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from '@react-navigation/native'
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import SearchBar from '../components/profile/SearchBar';
 
@@ -25,6 +24,7 @@ const Feature = ({}) => {
                     <View style={styles.card} />
                     <View style={styles.card} />
                     <View style={styles.card} />
+                    <View style={styles.card} />
                 </ScrollView>
 
                 <Text style={styles.subTitle}>Popular This Week</Text>
@@ -32,10 +32,12 @@ const Feature = ({}) => {
                     <View style={styles.card} />
                     <View style={styles.card} />
                     <View style={styles.card} />
+                    <View style={styles.card} />
                 </ScrollView>
 
                 <Text style={styles.subTitle}>Best Waterfalls</Text>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.rowScroll}>
+                    <View style={styles.card} />
                     <View style={styles.card} />
                     <View style={styles.card} />
                     <View style={styles.card} />
@@ -53,8 +55,6 @@ const styles = StyleSheet.create({
     },
     topBar: {
         backgroundColor: '#87F7D2',
-        // top: 10,
-
         height: 60,
         display: 'flex',
         alignItems: 'center',
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     card: {
-        width: 150,
-        height: 90,
+        width: 120,
+        height:170,
         backgroundColor: '#ccc',
         borderRadius: 12,
         marginHorizontal: 5,
