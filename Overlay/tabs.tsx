@@ -5,25 +5,32 @@ import { FontAwesome5, FontAwesome, Ionicons } from '@expo/vector-icons';
 import Home from '../screens/home';
 import Map from '../screens/map';
 import Profile from '../screens/profile';
+import { BottomTabRoutes } from '../types/BotttomTabRoutes';
+import { GeotrackerScreenParams } from '../types/ScreenRoutes';
+import { StatusBar } from 'expo-status-bar';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabRoutes>();
 
 const Tabs = () => {
     return(
-        <Tab.Navigator>
-            <Tab.Screen name="Home" component={Home} options={{
-                tabBarIcon: ({ color }) => <FontAwesome5 name="home" size={24} color={color} />
-            }} />
-            <Tab.Screen name="Explore" component={Explore} options={{
-                tabBarIcon: ({ color }) => <FontAwesome name="search" size={24} color={color} />
-            }} />
-            <Tab.Screen name="Map" component={Map} options={{
-                tabBarIcon: ({ color }) => <FontAwesome name="compass" size={24} color={color} />
-            }} />
-            <Tab.Screen name="Profile" component={Profile} options={{
-                tabBarIcon: ({ color }) => <Ionicons name="person-circle" size={24} color={color} />
-            }} />
-        </Tab.Navigator>
+        <>
+            <StatusBar style="light" backgroundColor="#000" />
+            <Tab.Navigator>
+                
+                <Tab.Screen name="Home" component={Home} options={{
+                    tabBarIcon: ({ color }) => <FontAwesome5 name="home" size={24} color={color} />
+                }} />
+                <Tab.Screen name="Explore" component={Explore} options={{
+                    tabBarIcon: ({ color }) => <FontAwesome name="search" size={24} color={color} />
+                }} />
+                <Tab.Screen name="Map" component={Map} options={{
+                    tabBarIcon: ({ color }) => <FontAwesome name="compass" size={24} color={color} />
+                }} />
+                <Tab.Screen name="Profile" component={Profile as any} options={{
+                    tabBarIcon: ({ color }) => <Ionicons name="person-circle" size={24} color={color} />
+                }} />
+            </Tab.Navigator>
+        </>
     )
 }
 
