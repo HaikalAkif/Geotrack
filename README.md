@@ -1,5 +1,5 @@
 ## Geotracker
-An Augmented Reality application that provides underrated hiking spots in Malaysia built using React Native
+An Augmented Reality application that provides underrated hiking spots in Malaysia built using React Native.
 
 ![Geotracker Ads Banner](https://user-images.githubusercontent.com/92365722/202911949-39c3dc1d-8d56-4228-bda4-7b9a58d919f6.png)
 
