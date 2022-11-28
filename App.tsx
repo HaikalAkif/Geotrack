@@ -45,6 +45,11 @@ export default function App() {
                 'DMSans-Regular': require('./assets/fonts/DM-Sans/DMSans-Regular.ttf'),
                 'DMSans-Medium': require('./assets/fonts/DM-Sans/DMSans-Medium.ttf'),
                 'DMSans-Bold': require('./assets/fonts/DM-Sans/DMSans-Bold.ttf'),
+                'Rubik-Bold': require('./assets/fonts/Rubik/Rubik-Bold.ttf'),
+                'Rubik-Light': require('./assets/fonts/Rubik/Rubik-Light.ttf'),
+                'Rubik-Medium': require('./assets/fonts/Rubik/Rubik-Medium.ttf'),
+                'Rubik-Regular': require('./assets/fonts/Rubik/Rubik-Regular.ttf'),
+                'Rubik-SemiBold': require('./assets/fonts/Rubik/Rubik-SemiBold.ttf'),
             })
 
             setIsLoading(false)
