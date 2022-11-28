@@ -70,8 +70,16 @@ const Profile = ({ navigation, route }: Params) => {
                     <Pressable style={styles.postBtn}><Feather name="video" size={24} color="black" /></Pressable>
                 </View>
                 <View style={styles.pics}>
-                    <View style={styles.pic} />
-                    <View style={styles.pic} />
+                    <View style={styles.pic}>
+                        <Image style={{height: '100%', width: '100%'}} source={{
+                            uri:'https://imgs.search.brave.com/sKik5XB0c54cLTSUAn_uSE9plTgPjuVGiflZCK_9wzc/rs:fit:1200:1024:1/g:ce/aHR0cHM6Ly93YXRj/aG1lc2VlLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvVGhlLVdo/YW5naWUtaGlrZS1u/ZWFyLUdsYXNnb3ct/MTAtMTUzNngxMDI0/LmpwZw'
+                        }}/>    
+                    </View>
+                    <View style={styles.pic}> 
+                        <Image style={{height: '100%', width: '100%'}} source={{
+                            uri:'https://imgs.search.brave.com/hqpD-_R-0PZ0kdEJJu8b0mtz43nYISeLLGSc-9_mI5s/rs:fit:612:408:1/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vcGhvdG9z/L3Nlbmlvci1tYW4t/dHJhaWwtaGlraW5n/LWluLXRoZS1mb3Jl/c3QtYXQtc3Vuc2V0/LXBpY3R1cmUtaWQ1/OTgyMjI1MzI_az02/Jm09NTk4MjIyNTMy/JnM9NjEyeDYxMiZ3/PTAmaD0xLTF2QXBX/R2ZDVlRzNWVkZnVO/TW5rckstallVUFkw/ZHY2MVBsVW83SVdv/PQ'
+                        }}/>
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -173,6 +181,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ccc',
         margin: 2,
         borderRadius: 10,
+        overflow: 'hidden',
     }
 })
 
