@@ -10,4 +10,11 @@ export type GeotrackerScreenParams = {
     settings: undefined;
     editProfile: undefined;
     forgot: undefined;
+    account: undefined;
+    noti: undefined;
+    lang: undefined;
+    privacy: undefined;
+    theme: undefined;
+    abt: undefined;
+    help: undefined;
 };
