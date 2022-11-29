@@ -1,5 +1,6 @@
 import { ColorValue, Pressable, PressableProps, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native'
 import React, { ReactNode } from 'react'
+import { GeotrackerTheme } from '../theme/GeotrackerTheme';
 
 interface GButtonParams {
     onPress?: () => void;
@@ -36,18 +37,20 @@ const styles = StyleSheet.create({
     container: {
         overflow: 'hidden',
         borderRadius: 7,
-        height: 40
+        height: 50
     },
     signup: {
         backgroundColor: "#eee",
         height: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexGrow: 1,
+        width: '100%'
     },
     signupBut: {
-        fontSize: 16,
+        fontSize: 14,
         alignSelf: "center",
-        fontFamily: 'DMSans-Regular',
+        fontFamily: GeotrackerTheme.font.medium,
         color: '#fff',
     },
 })

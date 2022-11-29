@@ -4,6 +4,7 @@ import Video from "react-native-video";
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
 import { GeotrackerTheme } from "../theme/GeotrackerTheme";
+import GButton from "../components/GButton";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -34,7 +35,14 @@ const GetStarted = ({ navigation }: Params) => {
                     </Text>
                 </View>
                 <View style={{ alignItems: 'center' }}>
-                    <Pressable
+                    <GButton 
+                        onPress={() => navigation.navigate('signup')}
+                        containerStyle={styles.pressable}  
+                        textStyle={{ color: '#000' }}
+                    >
+                        Get Started
+                    </GButton>
+                    {/* <Pressable
                         style={styles.pressable}
                         onPress={() => navigation.navigate('signup')}
                         android_ripple={{
@@ -42,7 +50,7 @@ const GetStarted = ({ navigation }: Params) => {
                         }}
                     >
                         <Text style={styles.button}>Get Started</Text>
-                    </Pressable>
+                    </Pressable> */}
                     <Text style={styles.ver}>V 1.0.09</Text>  
                 </View>
             </View>
@@ -84,21 +92,18 @@ const styles = StyleSheet.create({
     },
     pressable: {
         backgroundColor: "#eee",
-        paddingVertical: 7,
-        borderRadius: 5,
         marginBottom: 10,
-        height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%'
     },
     button: {
         color: "#000",
-        fontFamily: 'DMSans-Regular'
+        fontFamily: GeotrackerTheme.font.regular
     },
     ver: {
         fontSize: 14,
         color: '#eee',
-        fontFamily: 'DMSans-Regular'
+        fontFamily: GeotrackerTheme.font.regular
     }
 });

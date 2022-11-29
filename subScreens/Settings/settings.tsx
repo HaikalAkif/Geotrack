@@ -3,9 +3,9 @@ import { Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import { GeotrackerScreenParams } from '../../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { GeotrackerTheme } from "../theme/GeotrackerTheme";
+import { GeotrackerTheme } from "../../theme/GeotrackerTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
-import GButton from "../components/GButton";
+import GButton from "../../components/GButton";
 import Option from "../../components/sett/Option";
 
 const windowWidth = Dimensions.get("window").width;
