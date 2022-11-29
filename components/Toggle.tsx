@@ -3,8 +3,8 @@ import React, { isValidElement, useState} from "react";
 import { StyleSheet, Text, View, Switch } from "react-native";
 
 export default function App() {
-    const {isEnabled, setIsEnabled} = useState(true);
-    const {text, setText} = useState('Press The Switch!');
+    const [isEnabled, setIsEnabled] = useState(true);
+    const [text, setText] = useState('Press The Switch!');
 
     const toggleSwitch = () => {
         if (isEnabled) {

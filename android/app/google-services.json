@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "715503571183",
+    "project_id": "geotracker-my",
+    "storage_bucket": "geotracker-my.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715503571183:android:9fe542b6e7d92f40a70b1a",
+        "android_client_info": {
+          "package_name": "com.dice.geotracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715503571183-i4mct9jajdfvu1u4pmho5k5a0l1879vs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dice.geotracker",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoIaJ7CPN5SvVk3Xqz3ukpJdIPBYafLyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "715503571183-gc1pt4k8nksnrbmgb5hsmigdo86dqh4r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dice.geotracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
