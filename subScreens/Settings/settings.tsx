@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar } from "react-native";
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
-import { GeotrackerScreenParams } from '../types/ScreenRoutes';
+import { GeotrackerScreenParams } from '../../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { GeotrackerTheme } from "../theme/GeotrackerTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GButton from "../components/GButton";
+import Option from "../../components/sett/Option";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -27,48 +28,61 @@ const Settings = ({ navigation }: Params) => {
                 <Text style={styles.title}>Settings</Text>
             </View>
             <View style={styles.body}>
-                <View style={styles.option}>
+                <Option
+                    onPress={() => navigation.navigate('account')}>
                     <View style={styles.optionDetail}>
                         <MaterialCommunityIcons name="account" size={28} color="black" />
                         <Text style={styles.text}>Account</Text>
                     </View>
-                </View>
-                <View style={styles.option}>
+                </Option>
+                <Option
+                    onPress={() => navigation.navigate('noti')}
+                >
                     <View style={styles.optionDetail}>
                         <Ionicons name="notifications" size={28} color="black" />
                         <Text style={styles.text}>Notifications</Text>
                     </View>
-                </View>
-                <View style={styles.option}>
+                </Option>
+                <Option
+                    onPress={() => navigation.navigate('lang')}
+                >
                     <View style={styles.optionDetail}>
                         <Ionicons name="earth" size={28} color="black" />
                         <Text style={styles.text}>Language</Text>
                     </View>
-                </View>
-                <View style={styles.option}>
+                </Option>
+                <Option
+                    onPress={() => navigation.navigate('privacy')}
+                >
                     <View style={styles.optionDetail}>
                         <MaterialIcons name="lock" size={28} color="black" />
                         <Text style={styles.text}>Privacy</Text>
                     </View>
-                </View>
-                <View style={styles.option}>
+                </Option>
+                <Option
+                    onPress={() => navigation.navigate('theme')}
+                >
                     <View style={styles.optionDetail}>
                         <MaterialIcons name="settings-display" size={28} color="black" />
                         <Text style={styles.text}>Display</Text>
                     </View>
-                </View>
-                <View style={styles.option}>
+                </Option>
+                <Option
+                    onPress={() => navigation.navigate('abt')}
+                >
                     <View style={styles.optionDetail}>
                         <Entypo name="info-with-circle" size={24} color="black" />
                         <Text style={styles.text}>About GeoTracker</Text>
                     </View>
-                </View>
-                <View style={styles.option}>
+                </Option>
+                <Option
+                    onPress={() => navigation.navigate('help')}
+                >
                     <View style={styles.optionDetail}>
                         <Ionicons name="help-circle" size={28} color="black" />
                         <Text style={styles.text}>Help/Contact Us</Text>
                     </View>
-                </View>
+                </Option>
             </View>
             <View style={{ marginBottom: 10, marginHorizontal: 10 }}>
                 <GButton style={{ backgroundColor: '#ca0b00' }} rippleColor='#460905'>
@@ -107,13 +121,6 @@ const styles = StyleSheet.create({
         // backgroundColor: '#eee',
         flex: 1
     },
-    option: {
-        display: 'flex',
-        height: 70,
-        justifyContent: 'center',
-        borderBottomWidth: 1,
-        borderBottomColor: '#aaa',
-    },
     optionDetail: {
         display: 'flex',
         flexDirection: 'row',
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginTop: 3,
         fontSize: 16,
+        fontFamily: "DMSans-Regular",
     }
 
 })

@@ -10,11 +10,19 @@ import Home from "./screens/home";
 import Profile from "./screens/profile";
 import Map from "./screens/map";
 import Explore from "./screens/explore";
-import Settings from "./subScreens/settings";
+import Settings from "./subScreens/Settings/settings";
 import EditProfile from "./subScreens/editProfile";
 import Forgot from "./subScreens/forgot";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
 import Tabs from "./Overlay/tabs";
+
+import Account from "./subScreens/Settings/settingsPage/account";
+import Noti from "./subScreens/Settings/settingsPage/noti";
+import Lang from "./subScreens/Settings/settingsPage/lang";
+import Privacy from "./subScreens/Settings/settingsPage/privacy";
+import Theme from "./subScreens/Settings/settingsPage/theme";
+import Abt from "./subScreens/Settings/settingsPage/abt";
+import Help from "./subScreens/Settings/settingsPage/help";
 
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
@@ -37,6 +45,11 @@ export default function App() {
                 'DMSans-Regular': require('./assets/fonts/DM-Sans/DMSans-Regular.ttf'),
                 'DMSans-Medium': require('./assets/fonts/DM-Sans/DMSans-Medium.ttf'),
                 'DMSans-Bold': require('./assets/fonts/DM-Sans/DMSans-Bold.ttf'),
+                'Rubik-Bold': require('./assets/fonts/Rubik/Rubik-Bold.ttf'),
+                'Rubik-Light': require('./assets/fonts/Rubik/Rubik-Light.ttf'),
+                'Rubik-Medium': require('./assets/fonts/Rubik/Rubik-Medium.ttf'),
+                'Rubik-Regular': require('./assets/fonts/Rubik/Rubik-Regular.ttf'),
+                'Rubik-SemiBold': require('./assets/fonts/Rubik/Rubik-SemiBold.ttf'),
             })
 
             setIsLoading(false)
@@ -75,6 +88,13 @@ export default function App() {
                         <Stack.Screen name="editProfile" component={EditProfile} />
                         <Stack.Screen name="forgot" component={Forgot} />
                         <Stack.Screen name="tabs" component={Tabs} />
+                        <Stack.Screen name="account" component={Account} />
+                        <Stack.Screen name="noti" component={Noti} />
+                        <Stack.Screen name="lang" component={Lang} />
+                        <Stack.Screen name="privacy" component={Privacy} />
+                        <Stack.Screen name="theme" component={Theme} />
+                        <Stack.Screen name="abt" component={Abt} />
+                        <Stack.Screen name="help" component={Help} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </GestureHandlerRootView>
