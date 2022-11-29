@@ -3,6 +3,7 @@ import { StyleSheet, Text, Dimensions, Image, Pressable, SafeAreaView, View } fr
 import Video from "react-native-video";
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
+import { GeotrackerTheme } from "../theme/GeotrackerTheme";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -19,12 +20,14 @@ const GetStarted = ({ navigation }: Params) => {
                 style={styles.gif}
             />
             <View style={{ flex: 1, marginVertical: 20, marginHorizontal: 30 }}>
-                <View style={{ flex: 1, alignItems: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Image 
                         source={require('../assets/GeoLogo.png')}  
                         style={styles.logo}
                     />
-                    <Text style={styles.name}>GEOTRACKER</Text>
+                    <Text style={styles.name}>
+                        GeoTracker
+                    </Text>
                     <Text style={styles.desc}>
                         The best view comes{"\n"}
                         after the hardest climb
@@ -66,23 +69,18 @@ const styles = StyleSheet.create({
     logo: {
         height: 120,
         width: 120,
-        position: 'absolute',
-        top: 130,
     },
     name: {
-        fontSize: 40,
-        position: "absolute",
-        fontWeight: "bold",
+        fontSize: 42,
+        fontFamily: GeotrackerTheme.font.bold,
         color: "#121212",
-        top: 250,
     },
     desc: {
-        position: "absolute",
         fontSize: 16,
-        color: "#343434",
-        top: 290,
+        color: "#aaa",
         marginTop: 10,
         textAlign: 'center',
+        fontFamily: GeotrackerTheme.font.regular
     },
     pressable: {
         backgroundColor: "#eee",

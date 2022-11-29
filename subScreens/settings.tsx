@@ -1,8 +1,11 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar } from "react-native";
+import { Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar } from "react-native";
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { GeotrackerTheme } from "../theme/GeotrackerTheme";
+import { SafeAreaView } from "react-native-safe-area-context";
+import GButton from "../components/GButton";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -15,9 +18,12 @@ const Settings = ({ navigation }: Params) => {
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.topBar}>
-                <Pressable onPress={() => navigation.navigate('tabs')} style={styles.back}>
+                {/* <Pressable android_ripple={{ color: '#aaa' }} onPress={() => navigation.navigate('tabs')} style={styles.back}>
                     <Ionicons name="arrow-back" size={22} color="black" />
-                </Pressable>
+                </Pressable> */}
+                <GButton onPress={() => navigation.goBack()} style={{ paddingHorizontal: 10, backgroundColor: 'transparent' }} containerStyle={{ borderRadius: 50, marginRight: 5 }}>
+                    <Ionicons name="arrow-back" size={22} color="black" />
+                </GButton>
                 <Text style={styles.title}>Settings</Text>
             </View>
             <View style={styles.body}>
@@ -64,6 +70,11 @@ const Settings = ({ navigation }: Params) => {
                     </View>
                 </View>
             </View>
+            <View style={{ marginBottom: 10, marginHorizontal: 10 }}>
+                <GButton style={{ backgroundColor: '#ca0b00' }} rippleColor='#460905'>
+                    Log Out
+                </GButton>
+            </View>
         </SafeAreaView>
 )}
 
@@ -72,29 +83,29 @@ export default Settings
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        position: 'relative',
     },
     topBar: {
         backgroundColor: '#ddd',
         height: 60,
-        display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
-        top: statusbarHeight,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 10,
     },
     back: {
-        position: 'absolute',
-        left: 20,
+        // position: 'absolute',
+        marginRight: 10,
+        padding: 10
     },
     title: {
         color: '#121212',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: GeotrackerTheme.font.bold,
+        flex: 1
     },
     body: {
-        position: 'relative',
-        backgroundColor: '#eee',
-        top: statusbarHeight,
+        // backgroundColor: '#eee',
+        flex: 1
     },
     option: {
         display: 'flex',

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, View, ScrollView } from "react-native";
+import { StyleSheet, Text, Dimensions, View, ScrollView } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import GButton from "../components/GButton";
 import GTextField from "../components/Input/GTextField";
+import { GeotrackerTheme } from "../theme/GeotrackerTheme";
 // import Reveal from "../components/input/reveal";
 
 const windowWidth = Dimensions.get("window").width;
@@ -44,7 +45,7 @@ const Signup = ({ navigation }: Params) => {
                     Sign Up
                 </GButton>
                 <Text style={styles.tos}>
-                    By creating your account, you agreed to Geotracker{" "}
+                    By creating your account, you agree to our{" "}
                     <Text style={styles.toss}>Terms of Service</Text> and{" "}
                     <Text style={styles.toss}>Privacy Policy</Text>
                 </Text>
@@ -58,12 +59,12 @@ const Signup = ({ navigation }: Params) => {
                     </Pressable> */}
                     <GButton containerStyle={styles.google} style={{ flexDirection: 'row' }}>
                         <FontAwesomeIcon icon={faGoogle} style={{ marginRight: 6 }} />
-                            <Text style={styles.googleBut}>Sign In with Google</Text>
-                        </GButton>
-                    <Pressable style={styles.fb}>
+                        <Text style={styles.googleBut}>Sign In with Google</Text>
+                    </GButton>
+                    <GButton rippleColor='#1a2742' containerStyle={styles.fb} style={{ flexDirection: 'row', backgroundColor: "#3C5B99" }}>
                         <FontAwesomeIcon icon={faFacebook} style={{ marginRight: 6 }} color='#fff' />
                         <Text style={styles.fbBut}>Sign In with Facebook</Text>
-                    </Pressable>
+                    </GButton>
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -84,13 +85,13 @@ const styles = StyleSheet.create({
         fontSize: 40,
         color: "#000",
         marginTop: 70,
-        fontFamily: 'DMSans-Bold'
+        fontFamily: GeotrackerTheme.font.bold
     },
     account: {
         textAlign: "left",
         fontSize: 16,
         marginBottom: 40,
-        fontFamily: 'DMSans-Regular'
+        fontFamily: GeotrackerTheme.font.regular
     },
     signIn: {
         color: "#0000FF",
@@ -135,21 +136,16 @@ const styles = StyleSheet.create({
         fontSize: 14,
         alignSelf: "center",
         color: "#000",
+        fontFamily: GeotrackerTheme.font.regular
     },
     fb: {
-        borderRadius: 7,
-        height: 40,
-        backgroundColor: "#3C5B99",
-        paddingVertical: 10,
-        marginBottom: 20,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
+        marginBottom: 20
     },
     fbBut: {
         fontSize: 14,
         alignSelf: "center",
         color: "#fff",
+        fontFamily: GeotrackerTheme.font.regular
     },
     
 });

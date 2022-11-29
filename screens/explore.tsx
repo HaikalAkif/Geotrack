@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import SearchBar from '../components/profile/SearchBar';
+import { GeotrackerTheme } from '../theme/GeotrackerTheme';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -19,7 +20,7 @@ const Feature = ({}) => {
             </View>
             <ScrollView>
                 <SearchBar style={{ borderWidth: 0.5, marginHorizontal: 10, marginTop: 10 }} />
-                <Text style={styles.subTitle}>Nearby trails</Text>
+                <Text style={styles.subTitle}>Nearby Trails</Text>
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.rowScroll}>
                     <View style={styles.card} />
                     <View style={styles.card} />
@@ -42,6 +43,7 @@ const Feature = ({}) => {
                     <View style={styles.card} />
                     <View style={styles.card} />
                 </ScrollView>
+                <View style={{ height: 30 }} />
             </ScrollView>
         </SafeAreaView>
     )
@@ -69,9 +71,10 @@ const styles = StyleSheet.create({
     },
     subTitle: {
         fontSize: 20,
-        marginTop: 30,
+        marginTop: 20,
         marginBottom: 20,
         marginLeft: 20,
+        fontFamily: GeotrackerTheme.font.regular
     },
     card: {
         width: 120,
