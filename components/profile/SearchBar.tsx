@@ -26,23 +26,25 @@ export default SearchBar
 
 const styles = StyleSheet.create ({
     container: {
-        flex: 1,
+        flexGrow: 1,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#EDEEF2',
-        borderRadius: 20,
-        padding: 5,
-        paddingHorizontal: 100
+        borderRadius: 30,
+        padding: 5
     },
     trailingIcon: {
     },
     input: {
         paddingLeft: 5,
         // paddingVertical: 5,
-        flex: 1,
-        fontFamily: GeotrackerTheme.font.regular
+        fontFamily: GeotrackerTheme.font.regular,
+        flexGrow: 1,
+        height: 30,
     },
     cancel: {
-        marginLeft: 4
+        marginLeft: 4,
+        // position: 'absolute',
+        // right: 5
     }
 })
