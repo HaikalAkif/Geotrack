@@ -1,0 +1,26 @@
+{
+    "multiFactor": { "enrolledFactors": [] },
+    "metadata": {
+        "lastSignInTime": 1669716858199,
+        "creationTime": 1669716858199
+    },
+    "photoURL": "https://lh3.googleusercontent.com/a/ALm5wu19QpVUMxeUxHkgcJKSSmh5J0JakdEZ2MMqkdankVI=s96-c",
+    "phoneNumber": null,
+    "tenantId": null,
+    "displayName": "ElyasAsmad",
+    "emailVerified": true,
+    "isAnonymous": false,
+    "uid": "sGQrdsOoMQRfpgcUaA7GSpBvQc12",
+    "email": "elyasasmadz@gmail.com",
+    "providerData": [
+        {
+            "email": "elyasasmadz@gmail.com",
+            "providerId": "google.com",
+            "photoURL": "https://lh3.googleusercontent.com/a/ALm5wu19QpVUMxeUxHkgcJKSSmh5J0JakdEZ2MMqkdankVI=s96-c",
+            "phoneNumber": null,
+            "displayName": "ElyasAsmad",
+            "uid": "110505513758875460944"
+        }
+    ],
+    "providerId": "firebase"
+}

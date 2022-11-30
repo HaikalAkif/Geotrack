@@ -1,5 +1,5 @@
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useEffect, useState, Fragment } from "react";
 
@@ -24,6 +24,9 @@ import Theme from "./subScreens/Settings/settingsPage/theme";
 import Abt from "./subScreens/Settings/settingsPage/abt";
 import Help from "./subScreens/Settings/settingsPage/help";
 import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
+
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
 
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
@@ -33,28 +36,79 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStore } from "./utils/state/useBoundStore";
 import { UserDetail } from "./utils/state/slices/userSlice";
 
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import ViewUserPost from "./screens/ViewUserPost";
+import FirstTimeUser from "./screens/FirstTimeUser";
+import { updateUserLocal } from "./utils/service/userDetailsService";
+
+GoogleSignin.configure({
+    webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
+});
+
 const Stack = createNativeStackNavigator<GeotrackerScreenParams>();
+// const Stack = createSharedElementStackNavigator<GeotrackerScreenParams>();
 
 export default function App() {
 
     const [ isLoading, setIsLoading ] = useState(true)
-    const [ initializing, setInitializing ] = useState(true);
-    const [ user, setUser ] = useStore((state) => [ state.user, state.setUser ])
+    const [ firebaseInitializing, setFirebaseInitializing ] = useState(true);
+    const [ userDetails, setUserDetails ] = useStore((state) => [ state.user, state.setUser ])
+    const setUID = useStore((state) => state.setUID)
+    const setSignInResponse = useStore((state) => state.setSignInResponse)
+    const [ user, setUser ] = useState()
 
-    function onAuthStateChanged(user: any) {
-        console.log(user);
-        if (initializing) setInitializing(false);
-    }
+    const [ firstTimeUser, setFirstTimeUser ] = useStore((state) => [state.firstTimeUser, state.setFirstTimeUser])
 
     useEffect(() => {
 
-        const firebaseSubscriber = auth().onAuthStateChanged((user) => {
-            console.log(user);
+        async function fetchUserDetails(uid: string) {
+            
+            return await firestore().collection('Users').doc(uid).get();
+
+        }
+
+        const firebaseSubscriber = auth().onAuthStateChanged((firebaseUser) => {
+
+            if (firebaseInitializing) setFirebaseInitializing(false)
+
+            if (firebaseUser) {
+
+                setUID(firebaseUser.uid)
+
+                setSignInResponse(JSON.stringify(firebaseUser))
+                setUser(firebaseUser as any)
+
+                fetchUserDetails(firebaseUser.uid)
+                    .then((user) => {
+
+                        setFirstTimeUser(!user.exists)
+
+                        if (user.exists) {
+
+                            const userData = user.data();
+
+                            updateUserLocal(userData)
+
+                        }
+
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+
+            }
+            else {
+
+                // CLEAR USER FROM STATE
+                setUser(undefined)
+
+            }
+
         })
 
         return firebaseSubscriber;
 
-    })
+    }, [])
 
     useEffect(() => {
 
@@ -81,9 +135,9 @@ export default function App() {
     }, [])
 
     if (isLoading) return (
-        <View>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Loading...</Text>
-        </View>
+        </SafeAreaView>
     )
 
     return (
@@ -91,37 +145,46 @@ export default function App() {
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName={!user ? 'getstarted' : 'home'}
+                        initialRouteName={!user ? 'getstarted' : 'tabs'}
                         screenOptions={{
                             headerShown: false,
-                            animation: 'fade_from_bottom'
                         }}
+                        
                     >
                         {
                             (!user) ? (
-                                <Fragment>
+                                <>
                                     <Stack.Screen name="getstarted" component={GetStarted} />
                                     <Stack.Screen name="signup" component={Signup} />
                                     <Stack.Screen name="signin" component={Signin} />
-                                </Fragment>
+                                </>
                             ) : (
-                                <Fragment>
-                                    <Stack.Screen name="home" component={Home} />
-                                    <Stack.Screen name="profile" component={Profile} />
-                                    <Stack.Screen name="map" component={Map} />
-                                    <Stack.Screen name="explore" component={Explore} />
-                                    <Stack.Screen name="settings" component={Settings} />
-                                    <Stack.Screen name="editProfile" component={EditProfile} />
-                                    <Stack.Screen name="forgot" component={Forgot} />
-                                    <Stack.Screen name="tabs" component={Tabs} />
-                                    <Stack.Screen name="account" component={Account} />
-                                    <Stack.Screen name="noti" component={Noti} />
-                                    <Stack.Screen name="lang" component={Lang} />
-                                    <Stack.Screen name="privacy" component={Privacy} />
-                                    <Stack.Screen name="theme" component={Theme} />
-                                    <Stack.Screen name="abt" component={Abt} />
-                                    <Stack.Screen name="help" component={Help} />
-                                </Fragment>
+
+                                firstTimeUser ? (
+                                    <>
+                                        <Stack.Screen name="FirstTimeUser" component={FirstTimeUser}/>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Stack.Screen name="tabs" component={Tabs} />
+                                        <Stack.Screen name="home" component={Home} />
+                                        <Stack.Screen name="profile" component={Profile} />
+                                        <Stack.Screen name="map" component={Map} />
+                                        <Stack.Screen name="explore" component={Explore} />
+                                        <Stack.Screen name="settings" component={Settings} />
+                                        <Stack.Screen name="editProfile" component={EditProfile} />
+                                        <Stack.Screen name="forgot" component={Forgot} />
+                                        <Stack.Screen name="account" component={Account} />
+                                        <Stack.Screen name="noti" component={Noti} />
+                                        <Stack.Screen name="lang" component={Lang} />
+                                        <Stack.Screen name="privacy" component={Privacy} />
+                                        <Stack.Screen name="theme" component={Theme} />
+                                        <Stack.Screen name="abt" component={Abt} />
+                                        <Stack.Screen name="help" component={Help} />
+                                        <Stack.Screen name="ViewUserPost" component={ViewUserPost}/>
+                                        <Stack.Screen name="FirstTimeUser" component={FirstTimeUser}/>
+                                    </>
+                                )
                             )
                         }
                     </Stack.Navigator>
