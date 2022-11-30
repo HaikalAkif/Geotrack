@@ -35,8 +35,8 @@ const Home = ({}) => {
                     </GButton>
                 </View>
                 <Image style={{height: '100%', width: '100%', zIndex: -1}} source={{
-                    uri:'https://imgs.search.brave.com/ooGJf4Exw4SvYiMroKXMt8sE-LlySm1bS9H-YfnJIm4/rs:fit:736:1104:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC81OS83My84My81/OTczODNiYTc5YjU2/NWY3NzgzMmRiZWVm/YWM2MjFhYi5qcGc'
-                    // uri: 'https://images.unsplash.com/photo-1521728935364-00584c026397?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHdoaXRlJTIwYWVzdGhldGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
+                    // uri:'https://imgs.search.brave.com/ooGJf4Exw4SvYiMroKXMt8sE-LlySm1bS9H-YfnJIm4/rs:fit:736:1104:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC81OS83My84My81/OTczODNiYTc5YjU2/NWY3NzgzMmRiZWVm/YWM2MjFhYi5qcGc'
+                     uri: 'https://images.unsplash.com/photo-1521728935364-00584c026397?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHdoaXRlJTIwYWVzdGhldGljfGVufDB8fDB8fA%3D%3D&w=1000&q=80'
                 }} />
             </View>
             <View style={styles.container2}>
