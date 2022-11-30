@@ -19,7 +19,7 @@ const Map = ({}) => {
                     source={require('../assets/googlemap.jpg')}  
                     style={{height: 590, width: '100%'}}
                     />
-                </View> 
+                </View>
                 <Pressable style={styles.start}>
                     <Text style={styles.hike}>HIKE NOW</Text>
                 </Pressable>

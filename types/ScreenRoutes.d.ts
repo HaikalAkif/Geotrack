@@ -1,3 +1,5 @@
+import { UserPost } from "./UserPost";
+
 export type GeotrackerScreenParams = {
     profile: undefined;
     home: undefined;
@@ -17,4 +19,8 @@ export type GeotrackerScreenParams = {
     theme: undefined;
     abt: undefined;
     help: undefined;
+    ViewUserPost: {
+        postDetails: UserPost;
+    };
+    FirstTimeUser: undefined;
 };

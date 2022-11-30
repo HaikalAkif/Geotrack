@@ -1,35 +1,56 @@
 import { StatusBar } from "expo-status-bar";
-import React, { isValidElement, useState} from "react";
-import { StyleSheet, Text, View, Switch } from "react-native";
+import React, { useState} from "react";
+import { StyleSheet, Text, View, Switch, Pressable } from "react-native";
+import Animated, { interpolateColor, useAnimatedStyle, useDerivedValue, useSharedValue, withSpring } from 'react-native-reanimated'
 
-export default function App() {
-    const [isEnabled, setIsEnabled] = useState(true);
-    const [text, setText] = useState('Press The Switch!');
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-    const toggleSwitch = () => {
-        if (isEnabled) {
-            setText('Inactive')
-        } else {
-            setText('Active')
+export default function Toggle() {
+
+    const [ isToggled, setIsToggled ] = useState(false)
+
+    const offset = useSharedValue(0)
+
+    const animatedStyle = useAnimatedStyle(() => {
+        
+        if (isToggled) {
+            return {
+                transform: [{
+                    translateX: withSpring(offset.value, { stiffness: 500, damping: 20 })
+                }]
+            }
+        }
+        else {
+            return {
+                transform: [{
+                    translateX: withSpring(offset.value, { stiffness: 500, damping: 20 })
+                }]
+            }
         }
 
-        setIsEnabled(previousState => !previousState)
-    }
+    })
+
+    const springValue = useDerivedValue(() => withSpring(offset.value, { stiffness: 500, damping: 20 }))
+
+    const animatedContainerStyle = useAnimatedStyle(() => {
+
+        const backgroundColor = interpolateColor(springValue.value, [0, 15], ['#fff', '#c1e1c1'])
+
+        return {
+            backgroundColor
+        }
+
+    })
 
     return (
-        <View style={styles.container}>
-            <StatusBar style='dark' />
-            <Text style={{fontWeight:'bold', margin: 20}}>{text} </Text>
-
-            <Switch
-                trackColor={{false: 'grey', true: 'blue'}}
-                thumbColor={isEnabled ? '#f4f3f4' : '#f4f3f4'}
-                ios_backgroundColor='grey'
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-            />
-        </View>
+        <AnimatedPressable style={[styles.toggleContainer, animatedContainerStyle]} onPress={() => {
+            setIsToggled(!isToggled)
+            offset.value = isToggled ? 0 : 15
+        }}>
+            <Animated.View style={[styles.circleHandle, animatedStyle]} />
+        </AnimatedPressable>
     )
+
 }
 
 const styles = StyleSheet.create({
@@ -38,5 +59,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        
+    },
+    circleHandle: {
+        width: 18,
+        height: 18,
+        borderRadius: 18/2,
+        backgroundColor: '#000',
+    },
+    toggleContainer: {
+        borderWidth: 0.5,
+        width: 18 * 2,
+        borderRadius: 30,
+        padding: 1,
+        borderColor: '#777',
+        overflow: 'hidden'
     }
 })

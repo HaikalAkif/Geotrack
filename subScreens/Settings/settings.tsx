@@ -7,6 +7,7 @@ import { GeotrackerTheme } from "../../theme/GeotrackerTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GButton from "../../components/GButton";
 import Option from "../../components/sett/Option";
+import auth from '@react-native-firebase/auth'
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -22,7 +23,7 @@ const Settings = ({ navigation }: Params) => {
                 {/* <Pressable android_ripple={{ color: '#aaa' }} onPress={() => navigation.navigate('tabs')} style={styles.back}>
                     <Ionicons name="arrow-back" size={22} color="black" />
                 </Pressable> */}
-                <GButton onPress={() => navigation.goBack()} style={{ paddingHorizontal: 10, backgroundColor: 'transparent' }} containerStyle={{ borderRadius: 50, marginRight: 5 }}>
+                <GButton onPress={() => navigation.goBack()} style={{ paddingHorizontal: 10, backgroundColor: 'transparent' }} containerStyle={{ borderRadius: 50, marginRight: 5, height: 45, width: 45 }}>
                     <Ionicons name="arrow-back" size={22} color="black" />
                 </GButton>
                 <Text style={styles.title}>Settings</Text>
@@ -85,7 +86,7 @@ const Settings = ({ navigation }: Params) => {
                 </Option>
             </View>
             <View style={{ marginBottom: 10, marginHorizontal: 10 }}>
-                <GButton style={{ backgroundColor: '#ca0b00' }} rippleColor='#460905'>
+                <GButton style={{ backgroundColor: '#ca0b00' }} rippleColor='#460905' onPress={() => auth().signOut()}>
                     Log Out
                 </GButton>
             </View>
