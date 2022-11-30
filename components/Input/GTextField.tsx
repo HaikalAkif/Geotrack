@@ -12,18 +12,35 @@ interface VisiblePassParams {
     trailingComponent?: {
         icon: ReactNode;
         action: () => void;
-    }
+    };
+    leadingComponent?: {
+        icon: ReactNode;
+    };
+    text?: string;
+    onChangeText?: (text: string) => void;
 }
 
-const GTextField = ({ style, placeholder, password, type }: VisiblePassParams) => {
+const GTextField = React.forwardRef<TextInput, VisiblePassParams>(({ style, placeholder, password, type, leadingComponent, text, onChangeText }, ref)  => {
 
-    const [ text, setText ] = useState('')
+    // const [ text, setText ] = useState('')
     const [ showPassword, setShowPassword ] = useState(!password)
 
     return (
         <View style={[styles.container, style]}>
-            <TextInput keyboardType={type} placeholder={placeholder} secureTextEntry={!showPassword} style={[styles.input]} placeholderTextColor='#aaa' />
-           {password ? <View style={styles.trailingAction}>
+            {leadingComponent?.icon ? <View style={styles.leadingComponent}>
+                {leadingComponent?.icon}
+            </View> : null}
+            <TextInput 
+                ref={ref} 
+                keyboardType={type}
+                placeholder={placeholder}
+                secureTextEntry={!showPassword}
+                style={[styles.input]}
+                placeholderTextColor='#aaa'
+                value={text}
+                onChangeText={onChangeText}
+            />
+            {password ? <View style={styles.trailingAction}>
                 <GButton
                     containerStyle={{ marginRight: 4, borderRadius: 40/2, height: 40 }}
                     style={{ paddingHorizontal: 10 }}
@@ -35,11 +52,17 @@ const GTextField = ({ style, placeholder, password, type }: VisiblePassParams) =
             </View> : null}
         </View>
     )
-}
+})
 
 export default GTextField
 
 const styles = StyleSheet.create({
+    leadingComponent: {
+        width: 40,
+        marginRight: 5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     container: {
         flexDirection: 'row',
         borderRadius: 7,

@@ -14,10 +14,10 @@ const SearchBar = ({ style }: SearchBarParams) => {
     return (
         <View style={[styles.container, style]}>
             <Feather name="search" size={20} color="#777" style={styles.trailingIcon} />
-            <TextInput style={styles.input} placeholder="Search" value={text} onChangeText={setText} />
-            <TouchableOpacity style={styles.cancel} onPress={() => setText('')}>
+            <TextInput style={styles.input} placeholder="Search" value={text} onChangeText={setText} placeholderTextColor='#aaa' />
+            {text.length > 0 ? <TouchableOpacity style={styles.cancel} onPress={() => setText('')}>
                 <MaterialIcons name="cancel" size={24} color="#777" />
-            </TouchableOpacity>
+            </TouchableOpacity> : null}
         </View>
     )
 }
