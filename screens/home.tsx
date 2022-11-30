@@ -1,6 +1,5 @@
-import React from 'react'
-import { StyleSheet, Text, Dimensions, Pressable, View, StatusBar as RNStatusBar, Image } from 'react-native'
-import { StatusBar } from "expo-status-bar";
+import React, { useState } from 'react'
+import { StyleSheet, Text, Dimensions, View, StatusBar as RNStatusBar, Image } from 'react-native'
 import { SafeAreaView } from "react-native-safe-area-context"
 import { Entypo, AntDesign, Octicons } from '@expo/vector-icons';
 import GButton from '../components/GButton';
@@ -30,7 +29,11 @@ const Home = ({}) => {
                             <Text style={styles.rank}>Newbie</Text>
                         </View>
                     </GButton>
-                    <GButton rippleColor='#ccc' style={{ backgroundColor: 'transparent' }} containerStyle={{ borderRadius: 50, borderWidth: 0.25, borderColor: '#fff', height: 60, width: 60 }}>
+                    <GButton 
+                        rippleColor='#ccc' 
+                        style={{ backgroundColor: 'transparent' }} 
+                        containerStyle={{ borderRadius: 50, borderWidth: 0.25, borderColor: '#fff', height: 60, width: 60 }}
+                    >
                         <Entypo name="dots-three-vertical" size={20} color="#fff" style={{ padding: 18 }} />
                     </GButton>
                 </View>
@@ -47,6 +50,7 @@ const Home = ({}) => {
                 </View>
                 <Octicons name="report" size={26} color="white" />
             </View>
+            {/* <GDialog open={open} setOpen={setOpen} /> */}
         </SafeAreaView>
     )
 }  

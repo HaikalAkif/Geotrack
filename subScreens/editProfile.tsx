@@ -3,6 +3,8 @@ import { SafeAreaView, Text, Pressable, View, Dimensions, StyleSheet, StatusBar 
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+import Toggle from "../components/Toggle";
+import { useStore } from "../utils/state/useBoundStore";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -12,6 +14,7 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'editProfile'>
 const statusbarHeight = RNStatusBar.currentHeight!;
 
 const EditProfile = ({ navigation }: Params) => {
+
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.topBar}>
@@ -39,7 +42,9 @@ const EditProfile = ({ navigation }: Params) => {
                 <TextInput
                     style={styles.input}
                     placeholder="About me"
+                    multiline
                 />
+                <Toggle />
             </View>
         </SafeAreaView>
 
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     input: {
-        borderWidth: 2,
+        borderWidth: 0.5,
         borderRadius: 10,
         borderColor: '#343434',
         height: 100,
