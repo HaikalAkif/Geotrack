@@ -1,14 +1,15 @@
 import React from "react";
-import { SafeAreaView, Text, View, ScrollView, Dimensions, StyleSheet, Image, StatusBar as RNStatusBar, Pressable } from "react-native";
+import { Text, View, ScrollView, Dimensions, StyleSheet, Image, StatusBar as RNStatusBar, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from '@expo/vector-icons';
-import { NativeStackNavigationProp, NativeStackScreenProps } from "@react-navigation/native-stack";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { GeotrackerScreenParams } from "../types/ScreenRoutes";
-import { BottomTabNavigationProp, BottomTabScreenProps } from '@react-navigation/bottom-tabs'
-import { CompositeScreenProps } from "@react-navigation/native";
-import { BottomTabRoutes } from "../types/BotttomTabRoutes";
 import GButton from "../components/GButton";
 import { GeotrackerTheme } from "../theme/GeotrackerTheme";
+import ProfilePost from "../components/profile/ProfilePost";
+import auth from '@react-native-firebase/auth'
+import { useStore } from "../utils/state/useBoundStore";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,10 +18,28 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'profile'>
 
 const statusbarHeight = RNStatusBar.currentHeight!;
 
+const mockProfilePostsData = [
+    {
+        id: '123',
+        source: 'https://imgs.search.brave.com/sKik5XB0c54cLTSUAn_uSE9plTgPjuVGiflZCK_9wzc/rs:fit:1200:1024:1/g:ce/aHR0cHM6Ly93YXRj/aG1lc2VlLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvVGhlLVdo/YW5naWUtaGlrZS1u/ZWFyLUdsYXNnb3ct/MTAtMTUzNngxMDI0/LmpwZw',
+        username: 'elyasasmad',
+        uid: 'elyasasmad123'
+    },
+    {
+        id: '456',
+        source: 'https://imgs.search.brave.com/hqpD-_R-0PZ0kdEJJu8b0mtz43nYISeLLGSc-9_mI5s/rs:fit:612:408:1/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vcGhvdG9z/L3Nlbmlvci1tYW4t/dHJhaWwtaGlraW5n/LWluLXRoZS1mb3Jl/c3QtYXQtc3Vuc2V0/LXBpY3R1cmUtaWQ1/OTgyMjI1MzI_az02/Jm09NTk4MjIyNTMy/JnM9NjEyeDYxMiZ3/PTAmaD0xLTF2QXBX/R2ZDVlRzNWVkZnVO/TW5rckstallVUFkw/ZHY2MVBsVW83SVdv/PQ',
+        username: 'haikalakif',
+        uid: 'eykxl.s'
+    }
+]
+
 const Profile = ({ navigation, route }: Params) => {
+
+    const user = useStore((state) => state.user)
+
     return(
         <SafeAreaView style={styles.container}>
-        <StatusBar style="light" backgroundColor="#000" />
+            <StatusBar style="dark" />
             <ScrollView>
                 <View style={styles.card}>
                     <Image 
@@ -29,16 +48,16 @@ const Profile = ({ navigation, route }: Params) => {
                     />
                     <View style={styles.circle}>
                         <Image style={{height: '100%', width: '100%'}} source={{
-                            uri:'https://imgs.search.brave.com/xoiuBYa9Hjew8o50pO9qYzhtwTNzS-8QuXGO6QoVWco/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jZG4y/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvYXZhdGFycy05/OS82Mi9hdmF0YXIt/MzcwLTQ1NjMyMi01/MTIucG5n'
+                            uri: user.profilePicture
                         }} />
                     </View>
                 </View>
                 <View>
                     <Text style={styles.username}>
-                        eykxl.s
+                       {user.username}
                     </Text>
                     <Text style={styles.bio}>
-                        20 | IIUM | BCS {"\n"} Coder | Designer | Gamer
+                        {user.bio}
                     </Text>
                 </View>
                 <View style={styles.follow}>
@@ -70,16 +89,11 @@ const Profile = ({ navigation, route }: Params) => {
                     <Pressable style={styles.postBtn}><Feather name="video" size={24} color="black" /></Pressable>
                 </View>
                 <View style={styles.pics}>
-                    <View style={styles.pic}>
-                        <Image style={{height: '100%', width: '100%'}} source={{
-                            uri:'https://imgs.search.brave.com/sKik5XB0c54cLTSUAn_uSE9plTgPjuVGiflZCK_9wzc/rs:fit:1200:1024:1/g:ce/aHR0cHM6Ly93YXRj/aG1lc2VlLmNvbS93/cC1jb250ZW50L3Vw/bG9hZHMvVGhlLVdo/YW5naWUtaGlrZS1u/ZWFyLUdsYXNnb3ct/MTAtMTUzNngxMDI0/LmpwZw'
-                        }}/>    
-                    </View>
-                    <View style={styles.pic}> 
-                        <Image style={{height: '100%', width: '100%'}} source={{
-                            uri:'https://imgs.search.brave.com/hqpD-_R-0PZ0kdEJJu8b0mtz43nYISeLLGSc-9_mI5s/rs:fit:612:408:1/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vcGhvdG9z/L3Nlbmlvci1tYW4t/dHJhaWwtaGlraW5n/LWluLXRoZS1mb3Jl/c3QtYXQtc3Vuc2V0/LXBpY3R1cmUtaWQ1/OTgyMjI1MzI_az02/Jm09NTk4MjIyNTMy/JnM9NjEyeDYxMiZ3/PTAmaD0xLTF2QXBX/R2ZDVlRzNWVkZnVO/TW5rckstallVUFkw/ZHY2MVBsVW83SVdv/PQ'
-                        }}/>
-                    </View>
+                    {
+                        mockProfilePostsData.map((item, index) => (
+                            <ProfilePost {...item} key={item.id} />  
+                        ))
+                    }
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -94,8 +108,7 @@ const styles = StyleSheet.create({
     },
     card: {
         width: '100%',
-        height: 240,
-        top: statusbarHeight,
+        height: 215,
         display: 'flex',
         alignItems: 'center',
     },
@@ -116,7 +129,7 @@ const styles = StyleSheet.create({
         fontFamily: GeotrackerTheme.font.bold
     },
     bio: {
-        fontSize: 16,
+        fontSize: 14,
         textAlign: 'center',
     },
     follow: {
@@ -136,18 +149,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
+        marginHorizontal: 5
     },
     pressContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         marginTop: 20,
-        borderRadius: 5,
         borderWidth: 0.5,
         borderColor: '#ccc',
         flex: 1,
-        marginHorizontal: 10
+        marginHorizontal: 5,
+        height: 40
     },
     press: { 
         flexDirection: 'row',
@@ -175,13 +185,5 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 5,
     },
-    pic: {
-        width: 126,
-        height: 126,
-        backgroundColor: '#ccc',
-        margin: 2,
-        borderRadius: 10,
-        overflow: 'hidden',
-    }
 })
 
