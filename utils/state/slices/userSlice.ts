@@ -2,6 +2,7 @@ import { StateCreator } from "zustand";
 
 export interface UserSlice {
     loggedIn: boolean;
+    setLoggedIn: (state: boolean) => void;
     uid: string;
     setUID: (uid: string) => void;
     user: UserDetail;
@@ -33,6 +34,7 @@ const userInitialState: UserDetail = {
 
 export const createUserSlice: StateCreator<UserSlice, [], [], UserSlice> = (set) => ({
     loggedIn: false,
+    setLoggedIn: (_state) => set((state) => ({ loggedIn: _state })),
     uid: "",
     setUID: (uid) => set((state) => ({ uid })),
     user: userInitialState,
@@ -43,6 +45,6 @@ export const createUserSlice: StateCreator<UserSlice, [], [], UserSlice> = (set)
     logout: () => set((state) => ({ ...userInitialState, loggedIn: false })),
     signInResponse: '',
     setSignInResponse: (response) => set((state) => ({ signInResponse: response })),
-    firstTimeUser: true,
+    firstTimeUser: false,
     setFirstTimeUser: (userState) => set((state) => ({ firstTimeUser: userState })) 
 })
