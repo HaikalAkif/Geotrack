@@ -4,6 +4,7 @@ import { createSharedElementStackNavigator } from 'react-navigation-shared-eleme
 import { UserPost } from '../types/UserPost';
 import Profile from './profile';
 import ViewUserPost from './ViewUserPost';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export type ProfileScreens = {
     ProfileHomeScreen: undefined;
@@ -16,20 +17,38 @@ const PStack = createSharedElementStackNavigator<ProfileScreens>()
 
 const ProfileFragment = () => {
     return (
-        <PStack.Navigator 
-            initialRouteName='ProfileHomeScreen'
-            screenOptions={{
-                headerShown: false,
-                cardOverlayEnabled: true,
-                gestureEnabled: false,
-                cardStyle: { backgroundColor: 'transparent' }
-            }}
-        >
-            <PStack.Screen name='ProfileHomeScreen' component={Profile} />
-            <PStack.Screen name='ViewUserPost' component={ViewUserPost} sharedElements={(route) => {
-                return [ { id: route.params.postDetails.id, animation: 'move', resize: 'auto' } ]
-            }}  />
-        </PStack.Navigator>
+        <SafeAreaView style={{ flex: 1 }}>
+            <PStack.Navigator 
+                initialRouteName='ProfileHomeScreen'
+                screenOptions={{
+                    headerShown: false,
+                    cardOverlayEnabled: true,
+                    gestureEnabled: false,
+                    transitionSpec: {
+                        open: {
+                            animation: "spring",
+                            config: {
+                                stiffness: 500,
+                                damping: 50,
+                            }
+                        },
+                        close: {
+                            animation: 'spring',
+                            config: {
+                                stiffness: 500,
+                                damping: 50
+                            }
+                        }
+                    },
+                    cardStyle: { backgroundColor: 'transparent' },
+                }}
+            >
+                <PStack.Screen name='ProfileHomeScreen' component={Profile} />
+                <PStack.Screen name='ViewUserPost' component={ViewUserPost} sharedElements={(route) => {
+                    return [ { id: route.params.postDetails.id, animation: 'move' }, { id: 'general.bg' } ]
+                }}  />
+            </PStack.Navigator>
+        </SafeAreaView>
     )
 }
 

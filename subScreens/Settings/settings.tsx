@@ -8,6 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import GButton from "../../components/GButton";
 import Option from "../../components/sett/Option";
 import auth from '@react-native-firebase/auth'
+import GBackButton from "../../components/GBackButton";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -23,9 +24,7 @@ const Settings = ({ navigation }: Params) => {
                 {/* <Pressable android_ripple={{ color: '#aaa' }} onPress={() => navigation.navigate('tabs')} style={styles.back}>
                     <Ionicons name="arrow-back" size={22} color="black" />
                 </Pressable> */}
-                <GButton onPress={() => navigation.goBack()} style={{ paddingHorizontal: 10, backgroundColor: 'transparent' }} containerStyle={{ borderRadius: 50, marginRight: 5, height: 45, width: 45 }}>
-                    <Ionicons name="arrow-back" size={22} color="black" />
-                </GButton>
+                <GBackButton />
                 <Text style={styles.title}>Settings</Text>
             </View>
             <View style={styles.body}>

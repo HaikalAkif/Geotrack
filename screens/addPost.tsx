@@ -9,7 +9,7 @@ const windowHeight = Dimensions.get("window").height;
 const AddPost = ({}) => {
     return(
         <SafeAreaView style={styles.container}>
-            
+            <Text>Add Post</Text>
         </SafeAreaView>
     )
 }

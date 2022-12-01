@@ -26,8 +26,6 @@ const Signup = ({ navigation }: Params) => {
         await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
         // Get the users ID token
         const response = await GoogleSignin.signIn();
-
-        console.log(response);
       
         // Create a Google credential with the token
         const googleCredential = auth.GoogleAuthProvider.credential(response.idToken);
