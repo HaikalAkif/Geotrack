@@ -1,10 +1,17 @@
-import React from "react";
-import { SafeAreaView, Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar, Image, TextInput } from "react-native";
+import React, { useState } from "react";
+import { Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar, Image, TextInput } from "react-native";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import Toggle from "../components/Toggle";
 import { useStore } from "../utils/state/useBoundStore";
+import GButton from "../components/GButton";
+import { GeotrackerTheme } from "../theme/GeotrackerTheme";
+import firestore from '@react-native-firebase/firestore'
+import GDialog from "../components/GDialog";
+import { SafeAreaView } from "react-native-safe-area-context";
+import GBackButton from "../components/GBackButton";
+import { StatusBar } from "expo-status-bar";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -15,12 +22,31 @@ const statusbarHeight = RNStatusBar.currentHeight!;
 
 const EditProfile = ({ navigation }: Params) => {
 
+    const [user, setUser] = useStore((state) => [state.user, state.setUser])
+
+    const [ bio, setBio ] = useState(user.bio)
+    const [ loading, setLoading ] = useState('')
+    const uid = useStore((state) => state.uid)
+
+    const updateBio = async () => {
+
+        setLoading('Updating profile')
+
+        setUser({ ...user, bio })
+
+        await firestore().collection('Users').doc(uid).update({
+            bio
+        })
+
+        setLoading('')
+
+    }
+
     return(
         <SafeAreaView style={styles.container}>
+            <StatusBar style='dark' />
             <View style={styles.topBar}>
-                <Pressable onPress={() => navigation.navigate('tabs')} style={styles.back}>
-                    <Ionicons name="arrow-back" size={26} color="black" />
-                </Pressable>
+                <GBackButton />
                 <Text style={styles.title}>Edit Profile</Text>
             </View>
             <View>
@@ -30,22 +56,32 @@ const EditProfile = ({ navigation }: Params) => {
                         style={{height: 170, width: '100%'}}
                     />
                     <View style={styles.circle}>
-                            <Image style={{height: '100%', width: '100%'}} source={{
-                                uri:'https://imgs.search.brave.com/xoiuBYa9Hjew8o50pO9qYzhtwTNzS-8QuXGO6QoVWco/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9jZG4y/Lmljb25maW5kZXIu/Y29tL2RhdGEvaWNv/bnMvYXZhdGFycy05/OS82Mi9hdmF0YXIt/MzcwLTQ1NjMyMi01/MTIucG5n'
-                            }} />
+                        <Image style={{height: '100%', width: '100%'}} source={{
+                            uri: user.profilePicture
+                        }} />
                     </View>
                 </View>
-                <Text style={styles.username}>eykxl.s</Text>
+                <Text style={styles.username}>
+                    {user.username}
+                </Text>
             </View>
             <View style={styles.bio}>
-                <Text>Edit Bio</Text>
+                <Text style={{ fontFamily: GeotrackerTheme.font.regular }}>Edit Bio</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder="About me"
+                    placeholder="Write something about yourself"
+                    placeholderTextColor='#aaa'
                     multiline
+                    numberOfLines={5}
+                    value={bio}
+                    onChangeText={setBio}
                 />
-                <Toggle />
+                {/* <Toggle /> */}
+                <GButton style={{ backgroundColor: '#00929f' }} rippleColor='#00c2cb' onPress={updateBio}>
+                    Update Profile
+                </GButton>
             </View>
+            <GDialog open={loading} setOpen={setLoading} title='Geotracker' loading />
         </SafeAreaView>
 
 )}
@@ -58,11 +94,12 @@ const styles = StyleSheet.create({
     },
     topBar: {
         backgroundColor: '#ddd',
-        height: 60,
+        height: 55,
         display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        top: statusbarHeight,
+        paddingHorizontal: 10 
     },
     back: {
         position: 'absolute',
@@ -71,14 +108,15 @@ const styles = StyleSheet.create({
     title: {
         color: '#121212',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: GeotrackerTheme.font.bold,
+        flex: 1
     },
     card: {
         width: '100%',
-        height: 240,
-        top: statusbarHeight,
+        height: 170,
         display: 'flex',
         alignItems: 'center',
+        backgroundColor: 'red'
     },
     circle: {
         overflow: 'hidden',
@@ -87,24 +125,27 @@ const styles = StyleSheet.create({
         borderRadius: 150/2,
         width: 80,
         height: 80,
-        top: 125,
-        borderWidth: 3,
-        borderColor: '#c1e1c1'
+        bottom: -80/2,
+        elevation: 10
     },
     username: {
         textAlign: 'center',
         fontSize: 28,
+        fontFamily: GeotrackerTheme.font.regular,
+        marginTop: 50
     },
     bio: {
         marginHorizontal: 20,
-        marginTop: 20,
+        marginTop: 10,
     },
     input: {
         borderWidth: 0.5,
-        borderRadius: 10,
-        borderColor: '#343434',
-        height: 100,
+        borderRadius: 7,
+        borderColor: '#aaa',
+        // height: 100,
         paddingHorizontal: 10,
+        marginBottom: 20,
+        fontFamily: GeotrackerTheme.font.regular
     }
 
 })
