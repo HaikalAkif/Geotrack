@@ -13,6 +13,7 @@ import Explore from "./screens/explore";
 import Settings from "./subScreens/Settings/settings";
 import EditProfile from "./subScreens/editProfile";
 import Forgot from "./subScreens/forgot";
+import AddPost from "./screens/addPost";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
 import Tabs from "./Overlay/tabs";
 
@@ -174,6 +175,7 @@ export default function App() {
                                         <Stack.Screen name="settings" component={Settings} />
                                         <Stack.Screen name="editProfile" component={EditProfile} />
                                         <Stack.Screen name="forgot" component={Forgot} />
+                                        <Stack.Screen name="addPost" component={AddPost} />
                                         <Stack.Screen name="account" component={Account} />
                                         <Stack.Screen name="noti" component={Noti} />
                                         <Stack.Screen name="lang" component={Lang} />
