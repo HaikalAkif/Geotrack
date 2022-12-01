@@ -38,7 +38,6 @@ const FirstTimeUser = () => {
             })
             .then(() => {
                 setFirstTimeUser(false)
-                navigation.navigate('tabs')
             })
             .catch((err) => {
                 console.log(err);
