@@ -15,7 +15,7 @@ const DIALOG_WIDTH = SCREEN_WIDTH - 50;
 interface GDialogProps {
     open: string;
     title: string;
-    setOpen: (open: boolean) => void;
+    setOpen: (open: string) => void;
     loading?: boolean;
 }
 
@@ -105,7 +105,7 @@ const GDialog = ({ open, setOpen, title, loading }: GDialogProps) => {
                                 {open}
                             </Text>
                         </View>
-                        {!loading ? <GButton onPress={() => setOpen(false)} style={{ backgroundColor: '#00c2cb', height: 40 }}>
+                        {!loading ? <GButton onPress={() => setOpen('')} style={{ backgroundColor: '#00c2cb', height: 40 }}>
                             Close Dialog
                         </GButton> : null}
                     </Animated.View>
