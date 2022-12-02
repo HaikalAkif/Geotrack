@@ -1,7 +1,7 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { useReducer } from "react";
 import { View, TouchableOpacity, Text, StyleSheet, LayoutChangeEvent } from "react-native";
-import Animated, { useAnimatedStyle, useDerivedValue, withTiming } from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useDerivedValue, withSpring, withTiming } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Svg, { Path } from "react-native-svg";
 import GTabBarComponent from "./GTabBarComponent";
@@ -42,7 +42,7 @@ export default function GTabBar({ state: { index: activeIndex, routes }, navigat
         return {
             // translateX to the calculated offset with a smooth transition
             transform: [
-                { translateX: withTiming(xOffset.value, { duration: 250 }) },
+                { translateX: withSpring(xOffset.value, { stiffness: 200, damping: 20 }) },
             ],
         };
     });
@@ -56,7 +56,7 @@ export default function GTabBar({ state: { index: activeIndex, routes }, navigat
                 style={[styles.activeBackground, animatedStyles]}
             >
                 <Path
-                    fill="#604AE6"
+                    fill="#00929f"
                     d="M20 0H0c11.046 0 20 8.953 20 20v5c0 19.33 15.67 35 35 35s35-15.67 35-35v-5c0-11.045 8.954-20 20-20H20z"
                 />
             </AnimatedSvg>
