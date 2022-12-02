@@ -1,9 +1,0 @@
-Light Mode
-    #EFEFEF
-    #030313
-    #F3FE39
-
-Dark Mode  
-    #121212
-    #F9F9F9
-    #F3FE39
