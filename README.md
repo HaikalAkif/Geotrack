@@ -1,5 +1,5 @@
 ## GeoTracker
-An Augmented Reality (AR) social media mobile application that provides underrated hiking spots and their information in Malaysia.
+An Augmented Reality (AR) social media mobile application that provides underrated hiking spots and their details in Malaysia.
 
 ![Geotracker Ads Banner](https://user-images.githubusercontent.com/92365722/202911949-39c3dc1d-8d56-4228-bda4-7b9a58d919f6.png)
 
