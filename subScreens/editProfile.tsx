@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar, Image, TextInput } from "react-native";
+import { Text, Pressable, View, Dimensions, StyleSheet, StatusBar as RNStatusBar, Image, TextInput, Keyboard } from "react-native";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -30,7 +30,11 @@ const EditProfile = ({ navigation }: Params) => {
 
     const updateBio = async () => {
 
+        Keyboard.dismiss()
+
         setLoading('Updating profile')
+
+        await new Promise((r: any) => setTimeout(r, 2000))
 
         setUser({ ...user, bio })
 

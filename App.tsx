@@ -1,7 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 
 import GetStarted from "./screens/getstarted";
 import Signup from "./screens/signup";
@@ -27,20 +27,19 @@ import Help from "./subScreens/Settings/settingsPage/help";
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
-
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStore } from "./utils/state/useBoundStore";
-import { UserDetail } from "./utils/state/slices/userSlice";
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import ViewUserPost from "./screens/ViewUserPost";
 import FirstTimeUser from "./screens/FirstTimeUser";
-import { updateUserLocal } from "./utils/service/userDetailsService";
+
+import 'intl';
+import 'intl/locale-data/jsonp/en';
 
 GoogleSignin.configure({
     webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
@@ -53,63 +52,14 @@ export default function App() {
 
     const [ isLoading, setIsLoading ] = useState(true)
     const [ firebaseInitializing, setFirebaseInitializing ] = useState(true);
-    const [ userDetails, setUserDetails ] = useStore((state) => [ state.user, state.setUser ])
+
+    const [loggedIn, setLoggedIn] = useStore((state) => [state.loggedIn, state.setLoggedIn])
     const setUID = useStore((state) => state.setUID)
     const setSignInResponse = useStore((state) => state.setSignInResponse)
-    const [ user, setUser ] = useState()
-
+    const clearUserState = useStore((state) => state.logout)
     const [ firstTimeUser, setFirstTimeUser ] = useStore((state) => [state.firstTimeUser, state.setFirstTimeUser])
-
-    useEffect(() => {
-
-        async function fetchUserDetails(uid: string) {
-            
-            return await firestore().collection('Users').doc(uid).get();
-
-        }
-
-        const firebaseSubscriber = auth().onAuthStateChanged((firebaseUser) => {
-
-            if (firebaseInitializing) setFirebaseInitializing(false)
-
-            if (firebaseUser) {
-
-                setUID(firebaseUser.uid)
-
-                setSignInResponse(JSON.stringify(firebaseUser))
-                setUser(firebaseUser as any)
-
-                fetchUserDetails(firebaseUser.uid)
-                    .then((user) => {
-
-                        setFirstTimeUser(!user.exists)
-
-                        if (user.exists) {
-
-                            const userData = user.data();
-
-                            updateUserLocal(userData)
-
-                        }
-
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    })
-
-            }
-            else {
-
-                // CLEAR USER FROM STATE
-                setUser(undefined)
-
-            }
-
-        })
-
-        return firebaseSubscriber;
-
-    }, [])
+    // const [ firstTimeUser, setFirstTimeUser ] = useState(false)
+    const setUserDetails = useStore((state) => state.setUser)
 
     useEffect(() => {
 
@@ -133,9 +83,75 @@ export default function App() {
 
         loadFonts();
 
+        const firebaseSubscriber = auth().onAuthStateChanged((firebaseUser) => {
+
+            console.log('USER', firebaseUser);
+
+            if (firebaseInitializing) setFirebaseInitializing(false)
+
+            if (firebaseUser) {
+
+                setLoggedIn(true)
+
+                setUID(firebaseUser.uid)
+
+                setSignInResponse(JSON.stringify(firebaseUser))
+                    
+                firestore().collection('Users').doc(firebaseUser.uid).get()
+                    .then((response) => {
+
+                        if (response.exists) {
+
+                            const userData = response.data();
+    
+                            console.log('userdata', userData);
+    
+                            // updateUserLocal(userData)
+
+                            setUserDetails({
+                                username: userData?.username || 'john.doe',
+                                bio: userData?.bio || 'Update your bio',
+                                phoneNumber: userData?.phoneNumber || '+60123456789' ,
+                                email: userData?.email || 'EMAIL-FROMSERVICE',
+                                profilePicture: userData?.profilePicture || 'PHOTO-FROMSERVICE',
+                                bannerPicture: userData?.bannerPicture || ''
+                            })
+    
+                        }
+                        else {
+                            
+
+                            console.log('USER NOT EXIST');
+
+                            setFirstTimeUser(true)
+    
+                        }
+
+                    })
+                    .catch((err) => {
+                        console.log(err);
+
+                    })
+
+            }
+            else {
+
+                // CLEAR USER FROM STATE
+                clearUserState()
+
+            }
+
+        })
+
+        return firebaseSubscriber;
+
     }, [])
 
-    if (isLoading) return (
+    console.log(`firsttime: ${firstTimeUser}`);
+    console.log(`logedin: ${loggedIn}`);
+    
+
+    if (isLoading || firebaseInitializing) return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Loading...</Text>
         </SafeAreaView>
@@ -146,20 +162,14 @@ export default function App() {
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName={!user ? 'getstarted' : 'tabs'}
+                        initialRouteName={!loggedIn ? 'getstarted' : (firstTimeUser ? 'FirstTimeUser' : 'tabs')}
                         screenOptions={{
                             headerShown: false,
                         }}
                         
                     >
                         {
-                            (!user) ? (
-                                <>
-                                    <Stack.Screen name="getstarted" component={GetStarted} />
-                                    <Stack.Screen name="signup" component={Signup} />
-                                    <Stack.Screen name="signin" component={Signin} />
-                                </>
-                            ) : (
+                            (loggedIn) ? (
 
                                 firstTimeUser ? (
                                     <>
@@ -184,9 +194,16 @@ export default function App() {
                                         <Stack.Screen name="abt" component={Abt} />
                                         <Stack.Screen name="help" component={Help} />
                                         <Stack.Screen name="ViewUserPost" component={ViewUserPost}/>
-                                        <Stack.Screen name="FirstTimeUser" component={FirstTimeUser}/>
                                     </>
                                 )
+
+
+                            ) : (
+                                <>
+                                    <Stack.Screen name="getstarted" component={GetStarted} />
+                                    <Stack.Screen name="signup" component={Signup} />
+                                    <Stack.Screen name="signin" component={Signin} />
+                                </>
                             )
                         }
                     </Stack.Navigator>
