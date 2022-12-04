@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     gallery: {
         backgroundColor: '#097969',
         paddingTop: 20,
-        paddingBottom: 200,
+        paddingBottom: 100,
         borderRadius: 25,
     },
 })
