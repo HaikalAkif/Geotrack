@@ -9,7 +9,10 @@ const windowHeight = Dimensions.get("window").height;
 const AddPost = ({}) => {
     return(
         <SafeAreaView style={styles.container}>
-            <Text>Add Posts</Text>
+            <View style={styles.cam}>Open Camera</View>
+            <View style={styles.gallery}>
+                
+            </View>
         </SafeAreaView>
     )
 }
@@ -21,5 +24,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         flex: 1,
-    }
+    },
+    cam: {
+        height: 300,
+    },
+    gallery: {
+        backgroundColor: '#097969',
+        paddingTop: 20,
+        paddingBottom: 200,
+        borderRadius: 25,
+    },
 })
