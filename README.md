@@ -8,7 +8,7 @@ An Augmented Reality (AR) social media mobile application that provides underrat
   <ol>
     <li><a href="#Geotracker">Geotracker</a></li>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#contributor">Contributor</a></li>
+    <li><a href="#contributor">Contributors</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#availability">Availability</a></li>
