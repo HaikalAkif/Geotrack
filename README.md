@@ -1,5 +1,5 @@
-## Geotracker
-An Augmented Reality application that provides underrated hiking spots in Malaysia built using React Native.
+## GeoTracker
+An Augmented Reality (AR) social media mobile application that provides underrated hiking spots and their details in Malaysia.
 
 ![Geotracker Ads Banner](https://user-images.githubusercontent.com/92365722/202911949-39c3dc1d-8d56-4228-bda4-7b9a58d919f6.png)
 
@@ -8,7 +8,7 @@ An Augmented Reality application that provides underrated hiking spots in Malays
   <ol>
     <li><a href="#Geotracker">Geotracker</a></li>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#contributor">Contributor</a></li>
+    <li><a href="#contributor">Contributors</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#availability">Availability</a></li>
@@ -28,12 +28,12 @@ Our App's Objectives:
 
 ## Contributor
 
-| Position            | Name         |
-|---------------------|--------------|
-|Full Stack Developer | Elyas        |
-|Frontend Developer   | Haikal Akif  |
-|Logo Designer        | Amer Aizad   |
-|Character Artist     | Fadhlul Wafi |
+| Position               | Name         |
+|------------------------|--------------|
+| Full Stack Developer   | Elyas        |
+| Frontend Developer     | Haikal Akif  |
+| Logo Designer          | Amer Aizad   |
+| Character Artist       | Fadhlul Wafi |
 
 ## Built With
 
@@ -50,3 +50,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 - [ ] Website
 
 <p align="right"><a href="#Geotracker">back to top</a></p>
+
