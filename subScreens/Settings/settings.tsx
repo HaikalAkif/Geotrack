@@ -9,6 +9,7 @@ import GButton from "../../components/GButton";
 import Option from "../../components/sett/Option";
 import auth from '@react-native-firebase/auth'
 import GBackButton from "../../components/GBackButton";
+import { logoutUser } from "../../utils/service/authService";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -85,7 +86,7 @@ const Settings = ({ navigation }: Params) => {
                 </Option>
             </View>
             <View style={{ marginBottom: 10, marginHorizontal: 10 }}>
-                <GButton style={{ backgroundColor: '#ca0b00' }} rippleColor='#460905' onPress={() => auth().signOut()}>
+                <GButton style={{ backgroundColor: '#ca0b00' }} rippleColor='#460905' onPress={logoutUser}>
                     Log Out
                 </GButton>
             </View>
