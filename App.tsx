@@ -56,8 +56,8 @@ export default function App() {
     const [ userDetails, setUserDetails ] = useStore((state) => [ state.user, state.setUser ])
     const setUID = useStore((state) => state.setUID)
     const setSignInResponse = useStore((state) => state.setSignInResponse)
-    const [ user, setUser ] = useState()
-
+    
+    const [ loggedIn, setLoggedIn, stateLogout ] = useStore((state) => [ state.loggedIn, state.setLoggedIn, state.logout ])
     const [ firstTimeUser, setFirstTimeUser ] = useStore((state) => [state.firstTimeUser, state.setFirstTimeUser])
 
     useEffect(() => {
@@ -76,8 +76,9 @@ export default function App() {
 
                 setUID(firebaseUser.uid)
 
+                setLoggedIn(true)
+
                 setSignInResponse(JSON.stringify(firebaseUser))
-                setUser(firebaseUser as any)
 
                 fetchUserDetails(firebaseUser.uid)
                     .then((user) => {
@@ -88,7 +89,15 @@ export default function App() {
 
                             const userData = user.data();
 
-                            updateUserLocal(userData)
+                            // updateUserLocal(userData)
+                            setUserDetails({
+                                username: userData?.username || 'john.doe',
+                                bio: userData?.bio || 'Update your bio',
+                                phoneNumber: userData?.phoneNumber || '+60123456789' ,
+                                email: userData?.email || 'EMAIL-FROMSERVICE',
+                                profilePicture: userData?.profilePicture || 'PHOTO-FROMSERVICE',
+                                bannerPicture: userData?.bannerPicture || ''
+                            })
 
                         }
 
@@ -101,7 +110,7 @@ export default function App() {
             else {
 
                 // CLEAR USER FROM STATE
-                setUser(undefined)
+                stateLogout()
 
             }
 
@@ -110,6 +119,8 @@ export default function App() {
         return firebaseSubscriber;
 
     }, [])
+
+    console.log(loggedIn);
 
     useEffect(() => {
 
@@ -146,14 +157,14 @@ export default function App() {
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName={!user ? 'getstarted' : 'tabs'}
+                        initialRouteName={!loggedIn ? 'getstarted' : 'tabs'}
                         screenOptions={{
                             headerShown: false,
                         }}
                         
                     >
                         {
-                            (!user) ? (
+                            (!loggedIn) ? (
                                 <>
                                     <Stack.Screen name="getstarted" component={GetStarted} />
                                     <Stack.Screen name="signup" component={Signup} />
