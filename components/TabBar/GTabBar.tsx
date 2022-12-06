@@ -51,13 +51,13 @@ export default function GTabBar({ state: { index: activeIndex, routes }, navigat
         <View style={[styles.tabBar, { paddingBottom: bottom }]}>
             <AnimatedSvg
                 width={110}
-                height={60}
-                viewBox="0 0 110 60"
+                height={36}
+                viewBox="0 0 90 36"
                 style={[styles.activeBackground, animatedStyles]}
             >
                 <Path
-                    fill="#00929f"
-                    d="M20 0H0c11.046 0 20 8.953 20 20v5c0 19.33 15.67 35 35 35s35-15.67 35-35v-5c0-11.045 8.954-20 20-20H20z"
+                    d="M9.86 7.543C13.307 23.803 27.803 36 45 36S76.693 23.804 80.14 7.543C81.334 3.193 85.296 0 90 0H0c4.704 0 8.666 3.194 9.86 7.543Z"
+                    fill="#87F7D2"
                 />
             </AnimatedSvg>
 
@@ -73,6 +73,7 @@ export default function GTabBar({ state: { index: activeIndex, routes }, navigat
                             options={options}
                             onLayout={(e) => handleLayout(e, index)}
                             onPress={() => navigation.navigate(route.name)}
+                            routeName={route.name}
                         />
                     );
                 })}

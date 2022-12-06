@@ -3,21 +3,21 @@ import {
     Pressable,
     StyleSheet,
     Text,
-    View,
 } from "react-native";
 import React, { useRef } from "react";
 import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 import Animated, {
     useAnimatedStyle,
     withSpring,
-    withTiming,
 } from "react-native-reanimated";
+import { GeotrackerTheme } from "../../theme/GeotrackerTheme";
 
 type TabBarComponentProps = {
     active?: boolean;
     options: BottomTabNavigationOptions;
     onLayout: (e: LayoutChangeEvent) => void;
     onPress: () => void;
+    routeName: string;
 };
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
@@ -27,6 +27,7 @@ const GTabBarComponent = ({
     options,
     onLayout,
     onPress,
+    routeName
 }: TabBarComponentProps) => {
     const ref = useRef(null);
 
@@ -78,6 +79,9 @@ const GTabBarComponent = ({
                     <Text>?</Text>
                 )}
             </Animated.View>
+            <Text style={{ position: 'absolute', bottom: -24, right: 0, left: 0, textAlign: 'center', fontFamily: GeotrackerTheme.font.regular, fontSize: 12 }}>
+                {routeName}
+            </Text>
         </AnimatedPressable>
     );
 };
