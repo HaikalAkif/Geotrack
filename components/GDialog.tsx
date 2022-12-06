@@ -98,7 +98,7 @@ const GDialog = ({ open, setOpen, title, loading }: GDialogProps) => {
                                         width: 150,
                                         height: 150
                                     }}
-                                    source={require('../assets/lotttie/2523-loading.json')}
+                                    source={require('../assets/lottie/2523-loading.json')}
                                 />
                             </View> : null}
                             <Text style={{ fontFamily: GeotrackerTheme.font.regular }}>
