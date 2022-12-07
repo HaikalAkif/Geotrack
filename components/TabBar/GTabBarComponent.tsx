@@ -11,6 +11,8 @@ import Animated, {
     withSpring,
 } from "react-native-reanimated";
 import { GeotrackerTheme } from "../../theme/GeotrackerTheme";
+import * as Animatable from 'react-native-animatable'
+import { translateInFade } from "../../screens/ViewUserPost";
 
 type TabBarComponentProps = {
     active?: boolean;
@@ -79,9 +81,12 @@ const GTabBarComponent = ({
                     <Text>?</Text>
                 )}
             </Animated.View>
-            <Text style={{ position: 'absolute', bottom: -24, right: 0, left: 0, textAlign: 'center', fontFamily: GeotrackerTheme.font.regular, fontSize: 12 }}>
+            <Animatable.Text 
+                style={{ position: 'absolute', bottom: -24, right: 0, left: 0, textAlign: 'center', fontFamily: GeotrackerTheme.font.regular, fontSize: 12 }}
+                animation={translateInFade}
+            >
                 {routeName}
-            </Text>
+            </Animatable.Text>
         </AnimatedPressable>
     );
 };
