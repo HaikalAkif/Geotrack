@@ -22,7 +22,7 @@ const Trail = ({ navigation }: Params) => {
                 <View style={styles.pic}>
                     <Image 
                         source={require('../assets/sgPisang.webp')}  
-                        style={{height: 250, width: 'windowWidth'}}
+                        style={{height: 240, width: 'windowWidth'}}
                     />
                     <View style={styles.navi}> 
                         <Pressable onPress={() => navigation.navigate('explore')}>
