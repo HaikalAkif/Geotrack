@@ -17,7 +17,7 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'trail'>
 const Trail = ({ navigation }: Params) => {
     return(
         <SafeAreaView>
-            <StatusBar style="light" backgroundColor="#333" />
+            <StatusBar style="light" backgroundColor="#000" />
             <ScrollView style={styles.container}>
                 <View style={styles.pic}>
                     <Image 
