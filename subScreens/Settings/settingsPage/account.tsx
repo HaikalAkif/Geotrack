@@ -36,13 +36,6 @@ const Account = ({ navigation }: Params) => {
                         <Text style={styles.text}>Delete Account</Text>
                     </View>
                 </Option>
-                <Option
-                    // onPress={() => navigation.navigate("")}
-                >
-                    <View style={styles.optionDetail}>
-                        <Text style={styles.text}>Sign Out</Text>
-                    </View>
-                </Option>
             </View>
         </SafeAreaView>
 )}

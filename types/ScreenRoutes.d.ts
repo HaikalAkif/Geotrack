@@ -19,6 +19,7 @@ export type GeotrackerScreenParams = {
     theme: undefined;
     abt: undefined;
     help: undefined;
+    trail: undefined;
     addPost: undefined;
     ViewUserPost: {
         postDetails: UserPost;
