@@ -103,7 +103,7 @@ const Profile = ({ navigation, route }: Params) => {
                     </View>
                     <View style={{ flex: 1 }}>
                         <Text style={styles.count}>
-                            {formatNumber(128415715)}
+                            {formatNumber(1209)}
                         </Text>
                         <Text style={styles.profileLabel}>Followers</Text>
                     </View>
@@ -160,7 +160,7 @@ const Profile = ({ navigation, route }: Params) => {
                                 minHeight: POPUP_HEIGHT, 
                                 width: POPUP_WIDTH,
                                 top: (SCREEN_HEIGHT / 2) - (POPUP_HEIGHT / 2),
-                                zIndex: 2,
+                                zIndex: 20,
                                 left: (SCREEN_WIDTH / 2) - (POPUP_WIDTH / 2),
                                 // backgroundColor: '#9ef7ff',
                                 backgroundColor: '#fff',
@@ -187,18 +187,18 @@ const Profile = ({ navigation, route }: Params) => {
                                 <Text style={{ fontSize: 20, fontFamily: GeotrackerTheme.font.bold }}>{isPopupOpen.username}</Text>
                             </View>
                         </MotiView>
-                        <MotiView
+                        {/* <MotiView
                             style={{
                                 ...StyleSheet.absoluteFillObject,
                                 backgroundColor: '#0005',
-                                zIndex: 1
+                                zIndex: 2
                             }}
                             from={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             exitTransition={{ type: 'timing', duration: 250 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 10 }}
-                        />
+                        /> */}
                     </>
                 ) : null}
             </AnimatePresence>

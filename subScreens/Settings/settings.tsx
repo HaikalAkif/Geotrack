@@ -7,7 +7,6 @@ import { GeotrackerTheme } from "../../theme/GeotrackerTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GButton from "../../components/GButton";
 import Option from "../../components/sett/Option";
-import auth from '@react-native-firebase/auth'
 import GBackButton from "../../components/GBackButton";
 import { logoutUser } from "../../utils/service/authService";
 

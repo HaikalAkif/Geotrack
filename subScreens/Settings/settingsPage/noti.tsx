@@ -50,6 +50,7 @@ const Noti = ({ navigation }: Params) => {
                 >
                     <View style={styles.optionDetail}>
                         <Text style={styles.text}>Email Notifications</Text>
+                        <Toggle/>
                     </View>
                 </Option>
             </View>
@@ -88,8 +89,10 @@ const styles = StyleSheet.create({
     optionDetail: {
         flex: 1,
         display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
         flexDirection: 'row',
-        marginLeft: 20,
+        marginHorizontal: 20,
     },
     text: {
         marginLeft: 10,

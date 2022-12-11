@@ -1,7 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { NavigationContainer, NavigationProp, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState } from "react";
 
 import GetStarted from "./screens/getstarted";
 import Signup from "./screens/signup";
@@ -14,6 +14,7 @@ import Settings from "./subScreens/Settings/settings";
 import EditProfile from "./subScreens/editProfile";
 import Forgot from "./subScreens/forgot";
 import AddPost from "./screens/addPost";
+import Trail from "./screens/trail";
 import { GeotrackerScreenParams } from "./types/ScreenRoutes";
 import Tabs from "./Overlay/tabs";
 
@@ -27,20 +28,19 @@ import Help from "./subScreens/Settings/settingsPage/help";
 import auth from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
-
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { useStore } from "./utils/state/useBoundStore";
-import { UserDetail } from "./utils/state/slices/userSlice";
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import ViewUserPost from "./screens/ViewUserPost";
 import FirstTimeUser from "./screens/FirstTimeUser";
-import { updateUserLocal } from "./utils/service/userDetailsService";
+
+import 'intl';
+import 'intl/locale-data/jsonp/en';
 
 GoogleSignin.configure({
     webClientId: '715503571183-gqri4rn440vc1au8lie1a5pb4dvjdb8j.apps.googleusercontent.com',
@@ -53,26 +53,47 @@ export default function App() {
 
     const [ isLoading, setIsLoading ] = useState(true)
     const [ firebaseInitializing, setFirebaseInitializing ] = useState(true);
-    const [ userDetails, setUserDetails ] = useStore((state) => [ state.user, state.setUser ])
+
+    const [loggedIn, setLoggedIn] = useStore((state) => [state.loggedIn, state.setLoggedIn])
     const setUID = useStore((state) => state.setUID)
     const setSignInResponse = useStore((state) => state.setSignInResponse)
-    
+    const clearUserState = useStore((state) => state.logout)
     const [ loggedIn, setLoggedIn, stateLogout ] = useStore((state) => [ state.loggedIn, state.setLoggedIn, state.logout ])
     const [ firstTimeUser, setFirstTimeUser ] = useStore((state) => [state.firstTimeUser, state.setFirstTimeUser])
+    // const [ firstTimeUser, setFirstTimeUser ] = useState(false)
+    const setUserDetails = useStore((state) => state.setUser)
 
     useEffect(() => {
 
-        async function fetchUserDetails(uid: string) {
-            
-            return await firestore().collection('Users').doc(uid).get();
+        async function loadFonts() {
+
+            await Font.loadAsync({
+                ...Ionicons.font,
+                'DMSans-Regular': require('./assets/fonts/DM-Sans/DMSans-Regular.ttf'),
+                'DMSans-Medium': require('./assets/fonts/DM-Sans/DMSans-Medium.ttf'),
+                'DMSans-Bold': require('./assets/fonts/DM-Sans/DMSans-Bold.ttf'),
+                'Rubik-Bold': require('./assets/fonts/Rubik/Rubik-Bold.ttf'),
+                'Rubik-Light': require('./assets/fonts/Rubik/Rubik-Light.ttf'),
+                'Rubik-Medium': require('./assets/fonts/Rubik/Rubik-Medium.ttf'),
+                'Rubik-Regular': require('./assets/fonts/Rubik/Rubik-Regular.ttf'),
+                'Rubik-SemiBold': require('./assets/fonts/Rubik/Rubik-SemiBold.ttf'),
+            })
+
+            setIsLoading(false)
 
         }
 
+        loadFonts();
+
         const firebaseSubscriber = auth().onAuthStateChanged((firebaseUser) => {
+
+            console.log('USER', firebaseUser);
 
             if (firebaseInitializing) setFirebaseInitializing(false)
 
             if (firebaseUser) {
+
+                setLoggedIn(true)
 
                 setUID(firebaseUser.uid)
 
@@ -99,11 +120,14 @@ export default function App() {
                                 bannerPicture: userData?.bannerPicture || ''
                             })
 
+                            setFirstTimeUser(true)
+    
                         }
 
                     })
                     .catch((err) => {
                         console.log(err);
+
                     })
 
             }
@@ -126,27 +150,7 @@ export default function App() {
 
         async function loadFonts() {
 
-            await Font.loadAsync({
-                ...Ionicons.font,
-                'DMSans-Regular': require('./assets/fonts/DM-Sans/DMSans-Regular.ttf'),
-                'DMSans-Medium': require('./assets/fonts/DM-Sans/DMSans-Medium.ttf'),
-                'DMSans-Bold': require('./assets/fonts/DM-Sans/DMSans-Bold.ttf'),
-                'Rubik-Bold': require('./assets/fonts/Rubik/Rubik-Bold.ttf'),
-                'Rubik-Light': require('./assets/fonts/Rubik/Rubik-Light.ttf'),
-                'Rubik-Medium': require('./assets/fonts/Rubik/Rubik-Medium.ttf'),
-                'Rubik-Regular': require('./assets/fonts/Rubik/Rubik-Regular.ttf'),
-                'Rubik-SemiBold': require('./assets/fonts/Rubik/Rubik-SemiBold.ttf'),
-            })
-
-            setIsLoading(false)
-
-        }
-
-        loadFonts();
-
-    }, [])
-
-    if (isLoading) return (
+    if (isLoading || firebaseInitializing) return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Loading...</Text>
         </SafeAreaView>
@@ -189,15 +193,23 @@ export default function App() {
                                         <Stack.Screen name="addPost" component={AddPost} />
                                         <Stack.Screen name="account" component={Account} />
                                         <Stack.Screen name="noti" component={Noti} />
+                                        <Stack.Screen name="trail" component={Trail} />
                                         <Stack.Screen name="lang" component={Lang} />
                                         <Stack.Screen name="privacy" component={Privacy} />
                                         <Stack.Screen name="theme" component={Theme} />
                                         <Stack.Screen name="abt" component={Abt} />
                                         <Stack.Screen name="help" component={Help} />
                                         <Stack.Screen name="ViewUserPost" component={ViewUserPost}/>
-                                        <Stack.Screen name="FirstTimeUser" component={FirstTimeUser}/>
                                     </>
                                 )
+
+
+                            ) : (
+                                <>
+                                    <Stack.Screen name="getstarted" component={GetStarted} />
+                                    <Stack.Screen name="signup" component={Signup} />
+                                    <Stack.Screen name="signin" component={Signin} />
+                                </>
                             )
                         }
                     </Stack.Navigator>
