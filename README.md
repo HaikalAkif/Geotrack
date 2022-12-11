@@ -8,7 +8,7 @@ An Augmented Reality (AR) social media mobile application that provides underrat
   <ol>
     <li><a href="#Geotracker">Geotracker</a></li>
     <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#contributor">Contributor</a></li>
+    <li><a href="#contributor">Contributors</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#availability">Availability</a></li>
@@ -22,9 +22,9 @@ An Augmented Reality (AR) social media mobile application that provides underrat
 ![GitHub last commit](https://img.shields.io/github/last-commit/HaikalAkif/Geotracker)
 
 Our App's Objectives:
-* Provide underrated hiking spots with beautiful views in Malaysia
-* Guide and help the users in facing the hiking trails using Augmented Reality Feaature
-* Collect and share the experiences from all the hikers to the other users
+* Provide underrated hiking spots with beautiful views in Malaysia.
+* Guide and help the users in facing the hiking trails using Augmented Reality Feaature.
+* Collect and share the experiences from all the hikers to the other users.
 
 ## Contributor
 

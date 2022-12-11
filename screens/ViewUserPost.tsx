@@ -17,7 +17,7 @@ type ViewUserPostProps = NativeStackScreenProps<GeotrackerScreenParams, 'ViewUse
 
 const BASE_DELAY = 800
 
-const translateInFade: Animatable.CustomAnimation<TextStyle & ViewStyle & ImageStyle> = {
+export const translateInFade: Animatable.CustomAnimation<TextStyle & ViewStyle & ImageStyle> = {
     0: {
         opacity: 0,
         transform: [

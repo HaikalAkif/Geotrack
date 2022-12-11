@@ -58,6 +58,7 @@ export default function App() {
     const setUID = useStore((state) => state.setUID)
     const setSignInResponse = useStore((state) => state.setSignInResponse)
     const clearUserState = useStore((state) => state.logout)
+    const [ loggedIn, setLoggedIn, stateLogout ] = useStore((state) => [ state.loggedIn, state.setLoggedIn, state.logout ])
     const [ firstTimeUser, setFirstTimeUser ] = useStore((state) => [state.firstTimeUser, state.setFirstTimeUser])
     // const [ firstTimeUser, setFirstTimeUser ] = useState(false)
     const setUserDetails = useStore((state) => state.setUser)
@@ -96,19 +97,20 @@ export default function App() {
 
                 setUID(firebaseUser.uid)
 
+                setLoggedIn(true)
+
                 setSignInResponse(JSON.stringify(firebaseUser))
-                    
-                firestore().collection('Users').doc(firebaseUser.uid).get()
-                    .then((response) => {
 
-                        if (response.exists) {
+                fetchUserDetails(firebaseUser.uid)
+                    .then((user) => {
 
-                            const userData = response.data();
-    
-                            console.log('userdata', userData);
-    
+                        setFirstTimeUser(!user.exists)
+
+                        if (user.exists) {
+
+                            const userData = user.data();
+
                             // updateUserLocal(userData)
-
                             setUserDetails({
                                 username: userData?.username || 'john.doe',
                                 bio: userData?.bio || 'Update your bio',
@@ -117,12 +119,6 @@ export default function App() {
                                 profilePicture: userData?.profilePicture || 'PHOTO-FROMSERVICE',
                                 bannerPicture: userData?.bannerPicture || ''
                             })
-    
-                        }
-                        else {
-                            
-
-                            console.log('USER NOT EXIST');
 
                             setFirstTimeUser(true)
     
@@ -138,7 +134,7 @@ export default function App() {
             else {
 
                 // CLEAR USER FROM STATE
-                clearUserState()
+                stateLogout()
 
             }
 
@@ -148,9 +144,11 @@ export default function App() {
 
     }, [])
 
-    console.log(`firsttime: ${firstTimeUser}`);
-    console.log(`logedin: ${loggedIn}`);
-    
+    console.log(loggedIn);
+
+    useEffect(() => {
+
+        async function loadFonts() {
 
     if (isLoading || firebaseInitializing) return (
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -163,14 +161,20 @@ export default function App() {
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <NavigationContainer>
                     <Stack.Navigator
-                        initialRouteName={!loggedIn ? 'getstarted' : (firstTimeUser ? 'FirstTimeUser' : 'tabs')}
+                        initialRouteName={!loggedIn ? 'getstarted' : 'tabs'}
                         screenOptions={{
                             headerShown: false,
                         }}
                         
                     >
                         {
-                            (loggedIn) ? (
+                            (!loggedIn) ? (
+                                <>
+                                    <Stack.Screen name="getstarted" component={GetStarted} />
+                                    <Stack.Screen name="signup" component={Signup} />
+                                    <Stack.Screen name="signin" component={Signin} />
+                                </>
+                            ) : (
 
                                 firstTimeUser ? (
                                     <>
