@@ -31,7 +31,7 @@ const GetStarted = ({ navigation }: Params) => {
                     </Text>
                     <Text style={styles.desc}>
                         The best view comes{"\n"}
-                        after the hardest climb
+                        after the hardest climb.
                     </Text>
                 </View>
                 <View style={{ alignItems: 'center' }}>
