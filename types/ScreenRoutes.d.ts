@@ -1,3 +1,4 @@
+import { GeoMarker } from "../screens/JourneyMap";
 import { UserPost } from "./UserPost";
 
 export type GeotrackerScreenParams = {
@@ -19,10 +20,13 @@ export type GeotrackerScreenParams = {
     theme: undefined;
     abt: undefined;
     help: undefined;
-    trail: undefined;
     addPost: undefined;
     ViewUserPost: {
         postDetails: UserPost;
     };
     FirstTimeUser: undefined;
+    AugmentedReality: {
+        location: GeoMarker;
+    };
+    AugmentedRealityTest: undefined;
 };
