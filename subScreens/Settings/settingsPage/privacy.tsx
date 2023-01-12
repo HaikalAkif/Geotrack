@@ -4,7 +4,6 @@ import { GeotrackerScreenParams } from '../../../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import Option from "../../../components/sett/Option";
-import Toggle from "../../../components/Toggle";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -28,7 +27,6 @@ const Privacy = ({ navigation }: Params) => {
                 >
                     <View style={styles.optionDetail}>
                         <Text style={styles.text}>Private Account</Text>
-                        <Toggle/>
                     </View>
                 </Option>
                 <Option
@@ -43,7 +41,6 @@ const Privacy = ({ navigation }: Params) => {
                 >
                     <View style={styles.optionDetail}>
                         <Text style={styles.text}>Show Online to Friends</Text>
-                        <Toggle/>
                     </View>
                 </Option>
                 <Option

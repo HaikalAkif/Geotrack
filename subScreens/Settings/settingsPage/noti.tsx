@@ -27,7 +27,7 @@ const Noti = ({ navigation }: Params) => {
                     // onPress={() => navigation.navigate("")}
                 >
                     <View style={styles.optionDetail}>
-                        <Text style={styles.text}>Pause All</Text>
+                        <Text style={[styles.text]}>Pause All</Text>
                         <Toggle/>
                     </View>
                 </Option>
@@ -36,6 +36,7 @@ const Noti = ({ navigation }: Params) => {
                 >
                     <View style={styles.optionDetail}>
                         <Text style={styles.text}>Posts and Comments</Text>
+                        <Toggle/>
                     </View>
                 </Option>
                 <Option
@@ -89,15 +90,16 @@ const styles = StyleSheet.create({
     optionDetail: {
         flex: 1,
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
         flexDirection: 'row',
-        marginHorizontal: 20,
+        // marginLeft: 20,
+        alignItems: 'center',
+        paddingHorizontal: 16
     },
     text: {
         marginLeft: 10,
         marginTop: 3,
         fontSize: 16,
         fontFamily: "DMSans-Medium",
+        flexGrow: 1
     }
 })
