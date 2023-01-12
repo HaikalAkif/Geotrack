@@ -1,10 +1,13 @@
 import {
+    ImageStyle,
     LayoutChangeEvent,
     Pressable,
     StyleSheet,
     Text,
+    TextStyle,
+    ViewStyle,
 } from "react-native";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 import Animated, {
     useAnimatedStyle,
@@ -12,7 +15,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { GeotrackerTheme } from "../../theme/GeotrackerTheme";
 import * as Animatable from 'react-native-animatable'
-import { translateInFade } from "../../screens/ViewUserPost";
 
 type TabBarComponentProps = {
     active?: boolean;
@@ -24,6 +26,23 @@ type TabBarComponentProps = {
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
 
+const translateInFade: Animatable.CustomAnimation<TextStyle & ViewStyle & ImageStyle> = {
+    0: {
+        opacity: 0,
+        transform: [
+            { translateY: 100 },
+            { scale: 0 },
+        ]
+    },
+    1: {
+        opacity: 1,
+        transform: [
+            { translateY: 0 },
+            { scale: 1 },
+        ]
+    },
+}
+
 const GTabBarComponent = ({
     active,
     options,
@@ -31,7 +50,16 @@ const GTabBarComponent = ({
     onPress,
     routeName
 }: TabBarComponentProps) => {
-    const ref = useRef(null);
+
+    const textRef = useRef<any>(null)
+
+    useEffect(() => {
+
+        if (active) {
+            textRef.current!.animate(translateInFade)
+        }
+
+    }, [active])
 
     const animatedComponentCircleStyles = useAnimatedStyle(() => {
         return {
@@ -76,14 +104,18 @@ const GTabBarComponent = ({
             >
                 {/* @ts-ignore */}
                 {options.tabBarIcon ? (
-                    options.tabBarIcon({ ref })
+                    options.tabBarIcon({ } as any)
                 ) : (
                     <Text>?</Text>
                 )}
             </Animated.View>
             <Animatable.Text 
+                useNativeDriver
                 style={{ position: 'absolute', bottom: -24, right: 0, left: 0, textAlign: 'center', fontFamily: GeotrackerTheme.font.regular, fontSize: 12 }}
                 animation={translateInFade}
+                // delay={250}
+                ref={textRef}
+                // easing='ease'
             >
                 {routeName}
             </Animatable.Text>
