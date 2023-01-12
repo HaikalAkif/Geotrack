@@ -27,19 +27,22 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.dice.geotracker"
+      "package": "com.dice.geotracker",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDACD_h28VXuEbvTRICQGi8bJzUEmmjkiU"
+        }
+      }
     },
     "plugins": [
-      "@react-native-firebase/app",
-      "@react-native-google-signin/google-signin",
+      // "@react-native-google-signin/google-signin",
       [
-        "expo-build-properties",
+        "@viro-community/react-viro",
         {
-          "ios": {
-            "deploymentTarget": "13.0"
-          }
+          "androidXrMode": "AR"
         }
-      ]
+      ],
+      "@react-native-firebase/app"
     ],
     "web": {
       "favicon": "./assets/favicon.png"
