@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Text, View, ScrollView, Dimensions, StyleSheet, Image, Pressable, StatusBar as RNStatusBar } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from '@expo/vector-icons';
@@ -98,17 +98,17 @@ const Profile = ({ navigation, route }: Params) => {
                 </View>
                 <View style={styles.follow}>
                     <View style={{ flex: 1 }}>
-                        <Text style={styles.count}>2</Text>
+                        <Text style={styles.count}>4</Text>
                         <Text style={styles.profileLabel}>Posts</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Text style={styles.count}>
-                            {formatNumber(1209)}
+                            {formatNumber(1)}
                         </Text>
                         <Text style={styles.profileLabel}>Followers</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={styles.count}>17</Text>
+                        <Text style={styles.count}>0</Text>
                         <Text style={styles.profileLabel}>Following</Text>
                     </View>
                 </View>
@@ -160,7 +160,7 @@ const Profile = ({ navigation, route }: Params) => {
                                 minHeight: POPUP_HEIGHT, 
                                 width: POPUP_WIDTH,
                                 top: (SCREEN_HEIGHT / 2) - (POPUP_HEIGHT / 2),
-                                zIndex: 20,
+                                zIndex: 2,
                                 left: (SCREEN_WIDTH / 2) - (POPUP_WIDTH / 2),
                                 // backgroundColor: '#9ef7ff',
                                 backgroundColor: '#fff',
@@ -187,18 +187,18 @@ const Profile = ({ navigation, route }: Params) => {
                                 <Text style={{ fontSize: 20, fontFamily: GeotrackerTheme.font.bold }}>{isPopupOpen.username}</Text>
                             </View>
                         </MotiView>
-                        {/* <MotiView
+                        <MotiView
                             style={{
                                 ...StyleSheet.absoluteFillObject,
                                 backgroundColor: '#0005',
-                                zIndex: 2
+                                zIndex: 1
                             }}
                             from={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             exitTransition={{ type: 'timing', duration: 250 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 10 }}
-                        /> */}
+                        />
                     </>
                 ) : null}
             </AnimatePresence>
