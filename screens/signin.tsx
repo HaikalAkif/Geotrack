@@ -1,10 +1,13 @@
 import { StyleSheet, Text, Dimensions, TextInput, Pressable, Image, View } from 'react-native'
-import React, { useRef, useCallback, useMemo } from 'react'
+import React, { useRef, useCallback, useMemo, useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GeotrackerScreenParams } from '../types/ScreenRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+import GTextField from '../components/Input/GTextField';
 // import BottomSheet from '@gorhom/bottom-sheet';
+import auth from '@react-native-firebase/auth'
+import GDialog from '../components/GDialog';
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -13,44 +16,73 @@ type Params = NativeStackScreenProps<GeotrackerScreenParams, 'signin'>
 
 const Signin = ({ navigation }: Params) => {
 
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const [ errorMessage, setErrorMessage ] = useState('')
+
+    async function signIn() {
+
+        auth()
+            .signInWithEmailAndPassword(email.trim(), password.trim())
+            .then((user) => {
+                console.log(user);
+            })
+            .catch((reason) => {
+                console.log(reason.message.split(`[${reason.code}] `)[1]);
+                setErrorMessage(reason.message.split(`[${reason.code}] `)[1])
+            })
+
+    }
+
     return (  
-        <SafeAreaView style={styles.container}>
-            <View style={styles.container1}>
-                <Pressable onPress={() => navigation.navigate('signup')} style={styles.back} >
-                    <Ionicons name="arrow-back" size={30} color="black" />
-                </Pressable>
-                <Text style={styles.title}>Sign In</Text>
-                <Image
-                    style={styles.logo}
-                    source={require("../assets/GeoLogo.png")}
-                />
-                <Text style={styles.desc}>
-                    Welcome Back
-                </Text>
-                <Text style={styles.desc}>
-                    Log in and start exploring
-                </Text>
-            </View>
-            <View style={styles.container2}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                />
-                <TextInput 
-                    secureTextEntry={true}
-                    style={styles.input}
-                    placeholder="Password"
-                />
-                <Pressable style={styles.signin} onPress={() => navigation.navigate("tabs")}>
-                    <Text style={styles.signinBut}>Sign In</Text>
-                </Pressable>
-                <Pressable>
-                    <Text style={styles.forgot} onPress={() => navigation.navigate("forgot")}>
-                        Forgot your password?
+        <React.Fragment>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.container1}>
+                    <Pressable onPress={() => navigation.navigate('signup')} style={styles.back} >
+                        <Ionicons name="arrow-back" size={30} color="black" />
+                    </Pressable>
+                    <Text style={styles.title}>Sign In</Text>
+                    <Image
+                        style={styles.logo}
+                        source={require("../assets/GeoLogo.png")}
+                    />
+                    <Text style={styles.desc}>
+                        Welcome Back
                     </Text>
-                </Pressable>
-            </View>
-        </SafeAreaView>
+                    <Text style={styles.desc}>
+                        Log in and start exploring
+                    </Text>
+                </View>
+                <View style={styles.container2}>
+                    <GTextField
+                        style={styles.input}
+                        placeholder="Email"
+                        onChangeText={setEmail}
+                        text={email}
+                    />
+                    <GTextField 
+                        style={styles.input}
+                        placeholder="Password"
+                        password
+                        onChangeText={setPassword}
+                        text={password}
+                    />
+                    <Pressable style={styles.signin} onPress={signIn}>
+                        <Text style={styles.signinBut}>Sign In</Text>
+                    </Pressable>
+                    <Pressable>
+                        <Text style={styles.forgot} onPress={() => navigation.navigate("forgot")}>
+                            Forgot your password?
+                        </Text>
+                    </Pressable>
+                </View>
+            </SafeAreaView>
+            <GDialog 
+                title='Error'
+                open={errorMessage}
+                setOpen={setErrorMessage}
+            />
+        </React.Fragment>
     )
 }
 
