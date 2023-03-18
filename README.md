@@ -30,7 +30,7 @@ Our App's Objectives:
 
 | Position               | Name         |
 |------------------------|--------------|
-| Full Stack Developer   | Elyas        |
+| Full Stack Developer   | Elyas Asmad  |
 | Frontend Developer     | Haikal Akif  |
 | Logo Designer          | Amer Aizad   |
 | Character Artist       | Fadhlul Wafi |
